@@ -8,13 +8,11 @@ const history = createBrowserHistory();
 
 const App = () => {
   return (
-    <div className="App">
-      <Router history={history}>
-        <Switch>
-          <Route path="/" component={Home} />
-        </Switch>
-      </Router>
-    </div>
+    <Router history={history}>
+      <Switch>
+        <Route path="/" component={Home} />
+      </Switch>
+    </Router>
   );
 };
 
