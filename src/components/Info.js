@@ -23,7 +23,35 @@ const ContentDiv = styled.div`
 
 const Logo = styled.h1`
   font-size: 5rem;
-  margin: auto;
+  margin: 0 auto;
+
+  animation-name: FadeIn;
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
+
+  @keyframes FadeIn {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+`;
+
+const SubHeading = styled.h2`
+  animation-name: FadeIn;
+  animation-timing-function: ease-in;
+  animation-duration: 0.7s;
+`;
+
+const Description = styled.span`
+  animation-name: FadeIn;
+  animation-timing-function: ease-in;
+  animation-duration: 0.9s;
 `;
 
 const EntryButton = styled.div`
@@ -45,6 +73,48 @@ const EntryButton = styled.div`
     background-color: ${oc.gray[9]};
     color: ${oc.gray[0]};
   }
+
+  animation-name: FadeIn;
+  animation-timing-function: ease-in;
+  animation-duration: 1.2s;
+
+  @keyframes FadeIn {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+`;
+
+const DateDiv = styled.div`
+  animation-name: MoveUp;
+  animation-timing-function: ease-in;
+  animation-duration: 1.2s;
+
+  padding-bottom: 15px;
+
+  @keyframes MoveUp {
+    0% {
+      opacity: 0;
+      padding-top: 15px;
+      padding-bottom: 0px;
+    }
+    50% {
+      opacity: 0;
+      padding-top: 15px;
+      padding-bottom: 0px;
+    }
+    100% {
+      opacity: 1;
+      padding-top: 0px;
+      padding-bottom: 15px;
+    }
+  }
 `;
 
 const Info = () => {
@@ -52,11 +122,13 @@ const Info = () => {
     <Wrapper>
       <ContentDiv>
         <Logo>EntryGSM</Logo>
-        <h2>광주소프트웨어마이스터고등학교 원서접수</h2>
-        <span>온라인으로 간편하게 원서접수하세요</span>
+        <SubHeading>광주소프트웨어마이스터고등학교 원서접수</SubHeading>
+        <Description>온라인으로 간편하게 원서접수하세요</Description>
         <EntryButton>접수하기</EntryButton>
-        <DateCounter endDate={"09/04/19 0:12:43"} />
-        <span>접수 마감까지 남은 시간</span>
+        <DateDiv>
+          <DateCounter endDate={"09/04/20 0:12:43"} />
+          <span>접수 마감까지 남은 시간</span>
+        </DateDiv>
       </ContentDiv>
     </Wrapper>
   );
