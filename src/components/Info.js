@@ -55,7 +55,8 @@ const Info = () => {
         <h2>광주소프트웨어마이스터고등학교 원서접수</h2>
         <span>온라인으로 간편하게 원서접수하세요</span>
         <EntryButton>접수하기</EntryButton>
-        <DateCounter endDate={"2019.10.30"} />
+        <DateCounter endDate={"09/04/19 0:12:43"} />
+        <span>접수 마감까지 남은 시간</span>
       </ContentDiv>
     </Wrapper>
   );

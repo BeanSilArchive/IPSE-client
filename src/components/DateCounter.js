@@ -46,6 +46,14 @@ const calculateCountdown = endDate => {
   return timeLeft;
 };
 
+const Wrapper = styled.div`
+  display: flex;
+
+  span {
+    font-size: 4rem;
+  }
+`;
+
 const DateCounter = ({ endDate }) => {
   const [intervalID, setIntervalID] = useState(null);
 
@@ -56,6 +64,8 @@ const DateCounter = ({ endDate }) => {
     sec: 0
   });
 
+  const { days, hours, min, sec } = state;
+
   useEffect(() => {
     setIntervalID(
       setInterval(() => {
@@ -63,9 +73,22 @@ const DateCounter = ({ endDate }) => {
         date ? dispatch(date) : clearInterval(intervalID);
       }, 1000)
     );
+    return clearInterval(intervalID);
   }, []);
 
-  return <>{console.log(state)}</>;
+  const formatedHours = hours.toString().padStart(2, "0");
+  const formatedMin = min.toString().padStart(2, "0");
+  const formatedSec = sec.toString().padStart(2, "0");
+
+  return (
+    <Wrapper>
+      <span>{days}</span>
+      <span style={{ marginRight: `10px` }}>일</span>
+      <span>
+        {formatedHours}:{formatedMin}:{formatedSec}
+      </span>
+    </Wrapper>
+  );
 };
 
 export default DateCounter;
