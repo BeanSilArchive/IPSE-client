@@ -4,26 +4,29 @@ import oc from "open-color";
 
 import DateCounter from "components/DateCounter";
 
+import { ReactComponent as Img1 } from "asset/info_image_1.svg";
+
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
+  padding-top: 65px;
   box-sizing: border-box;
   display: flex;
 `;
 
 const ContentDiv = styled.div`
-  margin: auto 0;
+  margin-top: 200px;
+  margin-left: 150px;
+  box-sizing: border-box;
   display: block;
-  width: 100%;
-  text-align: center;
+  min-width: 550px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 `;
 
-const Logo = styled.h1`
-  font-size: 5rem;
-  margin: 0 auto;
+const Text1 = styled.span`
+  font-size: 4rem;
+  margin: 0;
 
   animation-name: FadeIn;
   animation-timing-function: ease-in;
@@ -61,9 +64,9 @@ const EntryButton = styled.div`
   border: 2px solid ${oc.gray[9]};
   font-size: 2rem;
   font-weight: 600;
-  width: 12rem;
+  width: 20rem;
   height: 3.5rem;
-  margin: 15px;
+  margin-top: 20px;
   cursor: pointer;
   border-radius: 5px;
   color: ${oc.gray[9]};
@@ -92,6 +95,10 @@ const EntryButton = styled.div`
 `;
 
 const DateDiv = styled.div`
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+
   animation-name: MoveUp;
   animation-timing-function: ease-in;
   animation-duration: 1.2s;
@@ -117,19 +124,46 @@ const DateDiv = styled.div`
   }
 `;
 
+const ImageDiv = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  animation-name: MoveUpImage;
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
+
+  @keyframes MoveUpImage {
+    0% {
+      opacity: 0;
+      padding-top: 15px;
+    }
+    100% {
+      opacity: 1;
+      padding-top: 0px;
+    }
+  }
+`;
+
 const Info = () => {
   return (
     <Wrapper>
       <ContentDiv>
-        <Logo>EntryGSM</Logo>
-        <SubHeading>광주소프트웨어마이스터고등학교 원서접수</SubHeading>
-        <Description>온라인으로 간편하게 원서접수하세요</Description>
-        <EntryButton>접수하기</EntryButton>
+        <Text1>
+          온라인으로
+          <br />
+          간편하게 원서접수
+        </Text1>
+        <SubHeading>광주소프트웨어마이스터고등학교 원서접수 시스템</SubHeading>
+        <EntryButton>지금 접수하기</EntryButton>
         <DateDiv>
-          <DateCounter endDate={"09/04/20 0:12:43"} />
+          <DateCounter endDate={"09/14/19 0:12:43"} />
           <span>접수 마감까지 남은 시간</span>
         </DateDiv>
       </ContentDiv>
+      <ImageDiv>
+        <Img1 style={{ width: `100%`, margin: `auto 0` }} />
+      </ImageDiv>
     </Wrapper>
   );
 };
