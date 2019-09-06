@@ -9,23 +9,32 @@ import { ReactComponent as Img1 } from "asset/info_image_1.svg";
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding-top: 65px;
+  padding-top: 70px;
   box-sizing: border-box;
   display: flex;
+  color: ${oc.gray[9]};
+
+  @media (max-width: 1200px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 const ContentDiv = styled.div`
-  margin-top: 200px;
-  margin-left: 150px;
+  margin: auto 0;
+  margin-left: 6rem;
   box-sizing: border-box;
   display: block;
   min-width: 550px;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1500px) {
+    margin-left: 100px;
+  }
 `;
 
 const Text1 = styled.span`
-  font-size: 4rem;
+  font-size: 3.5rem;
   margin: 0;
 
   animation-name: FadeIn;
@@ -95,7 +104,7 @@ const EntryButton = styled.div`
 `;
 
 const DateDiv = styled.div`
-  margin-top: 50px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
 
@@ -128,6 +137,7 @@ const ImageDiv = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+  box-sizing: border-box;
 
   animation-name: MoveUpImage;
   animation-timing-function: ease-in;
@@ -142,6 +152,45 @@ const ImageDiv = styled.div`
       opacity: 1;
       padding-top: 0px;
     }
+  }
+`;
+
+const SvgImage = styled(Img1)`
+  width: 50vw;
+  height: auto;
+  margin: auto 0;
+  padding: 20px;
+
+  .avatar {
+    animation-name: FadeInItems;
+    animation-timing-function: ease-in;
+    animation-duration: 0.7s;
+
+    @keyframes FadeInItems {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+      }
+    }
+  }
+  .desc {
+    animation-name: FadeInItems;
+    animation-timing-function: ease-in;
+    animation-duration: 1s;
+  }
+
+  .person {
+    animation-name: FadeInItems;
+    animation-timing-function: ease-in;
+    animation-duration: 1.2s;
+  }
+
+  @media (max-width: 1200px) {
+    width: 100vw;
   }
 `;
 
@@ -162,7 +211,7 @@ const Info = () => {
         </DateDiv>
       </ContentDiv>
       <ImageDiv>
-        <Img1 style={{ width: `100%`, margin: `auto 0` }} />
+        <SvgImage />
       </ImageDiv>
     </Wrapper>
   );

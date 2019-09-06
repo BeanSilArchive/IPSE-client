@@ -7,13 +7,13 @@ const Positioner = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 65px;
+  height: 70px;
   //box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
 `;
 
 const ContentDiv = styled.div`
-  width: 1250px;
-  @media (max-width: 1250px) {
+  width: 1700px;
+  @media (max-width: 1700px) {
     width: 100%;
   }
   margin: 0 auto;
@@ -57,7 +57,7 @@ const Header = () => {
   return (
     <Positioner>
       <ContentDiv>
-        <h1 style={{ margin: 0 }}>EntryGSM</h1>
+        <h1 style={{ margin: `15px` }}>EntryGSM</h1>
         <Spacer />
         <span>안내사항</span>
         <span>원서접수</span>
