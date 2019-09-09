@@ -33,7 +33,8 @@ const Spacer = styled.div`
   flex: 1;
 `;
 
-const LoginButton = styled.div`
+const LoginButton = styled.a`
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,7 +64,7 @@ const Header = () => {
         <span>안내사항</span>
         <span>원서접수</span>
         <span>Q&A</span>
-        <LoginButton>로그인</LoginButton>
+        <LoginButton href="/Auth">로그인</LoginButton>
       </ContentDiv>
     </Positioner>
   );
