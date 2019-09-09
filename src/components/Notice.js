@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React, { createRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import oc from "open-color";
-import ScrollAnimation from "react-animate-on-scroll";
-
-import DateCounter from "components/DateCounter";
 
 import { ReactComponent as Img1 } from "asset/notice_image_2.svg";
 
@@ -33,16 +30,19 @@ const ContentDiv = styled.div`
 const Text1 = styled.span`
   font-size: 3.5rem;
   margin: 0;
+  opacity: 0;
 
+  ${props =>
+    props.scroll
+      ? `
+  opacity: 1;
   animation-name: FadeIn;
   animation-timing-function: ease-out;
-  animation-duration: 0.5s;
+  animation-duration: 1s;`
+      : ``}
 
   @keyframes FadeIn {
     0% {
-      opacity: 0;
-    }
-    50% {
       opacity: 0;
     }
     100% {
@@ -94,49 +94,25 @@ const EntryButton = styled.div`
   animation-duration: 1.2s;
 `;
 
-const DateDiv = styled.div`
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-
-  animation-name: MoveUp;
-  animation-timing-function: ease-in;
-  animation-duration: 1.2s;
-
-  padding-bottom: 15px;
-
-  @keyframes MoveUp {
-    0% {
-      opacity: 0;
-      padding-top: 15px;
-      padding-bottom: 0px;
-    }
-    50% {
-      opacity: 0;
-      padding-top: 15px;
-      padding-bottom: 0px;
-    }
-    100% {
-      opacity: 1;
-      padding-top: 0px;
-      padding-bottom: 15px;
-    }
-  }
-`;
-
 const ImageDiv = styled.div`
   height: 100%;
   display: flex;
   box-sizing: border-box;
+  opacity: 0;
 
-  animation-name: MoveUpImage;
-  animation-timing-function: ease-in;
-  animation-duration: 0.5s;
+  ${props =>
+    props.scroll
+      ? `
+    opacity: 1;
+    animation-name: MoveUpImage;
+    animation-timing-function: ease-in;
+    animation-duration: 0.5s;`
+      : ``}
 
   @keyframes MoveUpImage {
     0% {
       opacity: 0;
-      padding-top: 15px;
+      padding-top: 30px;
     }
     100% {
       opacity: 1;
@@ -189,18 +165,48 @@ const Spacer = styled.div`
 `;
 
 const Info = () => {
-  const [on, setOn] = useState(false);
+  const [scroll, setScroll] = useState(false);
+  const [Reference, setReference] = useState(() => createRef());
+
+  const posTop = () => {
+    if (typeof window.pageYOffset !== "undefined") {
+      return window.pageYOffset;
+    } else if (document.documentElement.scrollTop) {
+      return document.documentElement.scrollTop;
+    } else if (document.body.scrollTop) {
+      return document.body.scrollTop;
+    }
+    return 0;
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, true);
+    return window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScroll = () => {
+    const element = Reference.current;
+    const top = posTop();
+    const elementPositionY = element.getBoundingClientRect().top + top;
+    const scrollPositionY = window.scrollY
+      ? window.scrollY
+      : window.pageYOffset;
+    const windowHeight = window.innerHeight;
+    if (scrollPositionY + windowHeight >= elementPositionY + 700) {
+      setScroll(true);
+    }
+  };
 
   return (
-    <Wrapper>
+    <Wrapper ref={Reference}>
       <Spacer />
-      <ImageDiv>
+      <ImageDiv scroll={scroll}>
         <SvgImage />
       </ImageDiv>
       <Spacer />
       <ContentDiv>
-        <Text1>수험자 안내사항</Text1>
-        <SubHeading on={on}>
+        <Text1 scroll={scroll}>수험자 안내사항</Text1>
+        <SubHeading scroll={scroll}>
           광주소프트웨어마이스터고등학교 원서접수 시스템
         </SubHeading>
         <EntryButton>지금 접수하기</EntryButton>

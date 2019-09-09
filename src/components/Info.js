@@ -123,7 +123,7 @@ const ImageDiv = styled.div`
   @keyframes MoveUpImage {
     0% {
       opacity: 0;
-      padding-top: 15px;
+      padding-top: 30px;
     }
     100% {
       opacity: 1;
