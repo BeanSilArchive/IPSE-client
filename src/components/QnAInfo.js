@@ -1,10 +1,8 @@
 import React, { createRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import oc from "open-color";
-import Icon from "@material-ui/core/Icon";
 
-import { ReactComponent as Img1 } from "asset/notice_image_2.svg";
-import downloadfile from "asset/2020학년도입학전형요강(최종).pdf";
+import { ReactComponent as Img1 } from "asset/qna_image_1.svg";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -231,26 +229,21 @@ const Info = () => {
       />
       <Wrapper ref={Reference}>
         <Spacer />
+        <ContentDiv>
+          <Text1 scroll={scroll}>
+            입학 전 궁금한 사항들을
+            <br />
+            질문하세요
+          </Text1>
+          <SubHeading scroll={scroll}>
+            학교 관련자분께 직접 질문할 수 있습니다.
+          </SubHeading>
+          <EntryButton scroll={scroll}>Q&A 게시판 이동</EntryButton>
+        </ContentDiv>
+        <Spacer />
         <ImageDiv scroll={scroll}>
           <SvgImage scroll={scroll} />
         </ImageDiv>
-        <Spacer />
-        <ContentDiv>
-          <Text1 scroll={scroll}>
-            수험자 안내사항을
-            <br />
-            확인하세요
-          </Text1>
-          <SubHeading scroll={scroll}>
-            입학전형요강 PDF파일을 다운받을 수 있습니다.
-          </SubHeading>
-          <DownLoadLink href={downloadfile} download>
-            <EntryButton scroll={scroll}>
-              <Icon>get_app</Icon>
-              다운로드
-            </EntryButton>
-          </DownLoadLink>
-        </ContentDiv>
         <Spacer />
       </Wrapper>
     </>
