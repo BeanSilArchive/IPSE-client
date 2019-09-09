@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import oc from "open-color";
+import ScrollAnimation from "react-animate-on-scroll";
 
 import DateCounter from "components/DateCounter";
 
-import { ReactComponent as Img1 } from "asset/info_image_1.svg";
+import { ReactComponent as Img1 } from "asset/notice_image_2.svg";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -34,7 +35,7 @@ const Text1 = styled.span`
   margin: 0;
 
   animation-name: FadeIn;
-  animation-timing-function: ease-in;
+  animation-timing-function: ease-out;
   animation-duration: 0.5s;
 
   @keyframes FadeIn {
@@ -51,9 +52,21 @@ const Text1 = styled.span`
 `;
 
 const SubHeading = styled.h2`
+  opacity: 0;
+  ${props =>
+    props.on
+      ? `
+      opacity: 1;
+      animation-name: FadeIn;
+    animation-timing-function: ease-in;
+    animation-duration: 0.7s;`
+      : ``};
+`;
+
+const Description = styled.span`
   animation-name: FadeIn;
   animation-timing-function: ease-in;
-  animation-duration: 0.7s;
+  animation-duration: 0.9s;
 `;
 
 const EntryButton = styled.div`
@@ -176,26 +189,22 @@ const Spacer = styled.div`
 `;
 
 const Info = () => {
+  const [on, setOn] = useState(false);
+
   return (
     <Wrapper>
-      <Spacer />
-      <ContentDiv>
-        <Text1>
-          온라인으로
-          <br />
-          간편하게 원서접수
-        </Text1>
-        <SubHeading>광주소프트웨어마이스터고등학교 원서접수 시스템</SubHeading>
-        <EntryButton>지금 접수하기</EntryButton>
-        <DateDiv>
-          <DateCounter endDate={"09/14/19 0:12:43"} />
-          <span>접수 마감까지 남은 시간</span>
-        </DateDiv>
-      </ContentDiv>
       <Spacer />
       <ImageDiv>
         <SvgImage />
       </ImageDiv>
+      <Spacer />
+      <ContentDiv>
+        <Text1>수험자 안내사항</Text1>
+        <SubHeading on={on}>
+          광주소프트웨어마이스터고등학교 원서접수 시스템
+        </SubHeading>
+        <EntryButton>지금 접수하기</EntryButton>
+      </ContentDiv>
       <Spacer />
     </Wrapper>
   );
