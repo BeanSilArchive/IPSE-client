@@ -1,8 +1,10 @@
 import React, { createRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import oc from "open-color";
+import Icon from "@material-ui/core/Icon";
 
 import { ReactComponent as Img1 } from "asset/notice_image_2.svg";
+import downloadfile from "asset/2020학년도입학전형요강(최종).pdf";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -37,12 +39,15 @@ const Text1 = styled.span`
       ? `
   opacity: 1;
   animation-name: FadeIn;
-  animation-timing-function: ease-out;
-  animation-duration: 1s;`
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;`
       : ``}
 
   @keyframes FadeIn {
     0% {
+      opacity: 0;
+    }
+    50% {
       opacity: 0;
     }
     100% {
@@ -53,8 +58,9 @@ const Text1 = styled.span`
 
 const SubHeading = styled.h2`
   opacity: 0;
+  margin: 0.5rem;
   ${props =>
-    props.on
+    props.scroll
       ? `
       opacity: 1;
       animation-name: FadeIn;
@@ -63,10 +69,13 @@ const SubHeading = styled.h2`
       : ``};
 `;
 
-const Description = styled.span`
-  animation-name: FadeIn;
-  animation-timing-function: ease-in;
-  animation-duration: 0.9s;
+const DownLoadLink = styled.a`
+  &:link {
+    text-decoration: none;
+  }
+  &:visited {
+    text-decoration: none;
+  }
 `;
 
 const EntryButton = styled.div`
@@ -83,15 +92,21 @@ const EntryButton = styled.div`
   border-radius: 5px;
   color: ${oc.gray[9]};
   letter-spacing: 2px;
+  opacity: 0;
 
   &:hover {
     background-color: ${oc.gray[9]};
     color: ${oc.gray[0]};
   }
 
-  animation-name: FadeIn;
-  animation-timing-function: ease-in;
-  animation-duration: 1.2s;
+  ${props =>
+    props.scroll
+      ? `
+    opacity: 1;
+    animation-name: FadeIn;
+    animation-timing-function: ease-in;
+    animation-duration: 1s;`
+      : ``}
 `;
 
 const ImageDiv = styled.div`
@@ -133,7 +148,7 @@ const SvgImage = styled(Img1)`
       .check1 {
         animation-name: FadeInItems;
         animation-timing-function: ease-in;
-        animation-duration: 0.7s;
+        animation-duration: 0.6s;
 
         @keyframes FadeInItems {
           0% {
@@ -149,19 +164,19 @@ const SvgImage = styled(Img1)`
       .check2 {
         animation-name: FadeInItems;
         animation-timing-function: ease-in;
-        animation-duration: 1s;
+        animation-duration: 0.9s;
       }
 
       .check3 {
         animation-name: FadeInItems;
         animation-timing-function: ease-in;
-        animation-duration: 1.3s;
+        animation-duration: 1.2s;
       }
 
       .check4 {
         animation-name: FadeInItems;
         animation-timing-function: ease-in;
-        animation-duration: 1.6s;
+        animation-duration: 1.5s;
       }`
       : ``}
 
@@ -209,21 +224,32 @@ const Info = () => {
   };
 
   return (
-    <Wrapper ref={Reference}>
-      <Spacer />
-      <ImageDiv scroll={scroll}>
-        <SvgImage scroll={scroll} />
-      </ImageDiv>
-      <Spacer />
-      <ContentDiv>
-        <Text1 scroll={scroll}>수험자 안내사항</Text1>
-        <SubHeading scroll={scroll}>
-          광주소프트웨어마이스터고등학교 원서접수 시스템
-        </SubHeading>
-        <EntryButton>지금 접수하기</EntryButton>
-      </ContentDiv>
-      <Spacer />
-    </Wrapper>
+    <>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      />
+      <Wrapper ref={Reference}>
+        <Spacer />
+        <ImageDiv scroll={scroll}>
+          <SvgImage scroll={scroll} />
+        </ImageDiv>
+        <Spacer />
+        <ContentDiv>
+          <Text1 scroll={scroll}>수험자 안내사항</Text1>
+          <SubHeading scroll={scroll}>
+            입학전형요강 PDF파일을 다운받을 수 있습니다.
+          </SubHeading>
+          <DownLoadLink href={downloadfile} download>
+            <EntryButton scroll={scroll}>
+              <Icon>get_app</Icon>
+              다운로드
+            </EntryButton>
+          </DownLoadLink>
+        </ContentDiv>
+        <Spacer />
+      </Wrapper>
+    </>
   );
 };
 
