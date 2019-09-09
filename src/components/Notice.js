@@ -127,33 +127,43 @@ const SvgImage = styled(Img1)`
   margin: auto 0;
   padding: 20px;
 
-  .avatar {
-    animation-name: FadeInItems;
-    animation-timing-function: ease-in;
-    animation-duration: 0.7s;
+  ${props =>
+    props.scroll
+      ? `
+      .check1 {
+        animation-name: FadeInItems;
+        animation-timing-function: ease-in;
+        animation-duration: 0.7s;
 
-    @keyframes FadeInItems {
-      0% {
-        opacity: 0;
+        @keyframes FadeInItems {
+          0% {
+            opacity: 0;
+          }
+          60% {
+            opacity: 0;
+          }
+          100% {
+          }
+        }
       }
-      50% {
-        opacity: 0;
+      .check2 {
+        animation-name: FadeInItems;
+        animation-timing-function: ease-in;
+        animation-duration: 1s;
       }
-      100% {
-      }
-    }
-  }
-  .desc {
-    animation-name: FadeInItems;
-    animation-timing-function: ease-in;
-    animation-duration: 1s;
-  }
 
-  .person {
-    animation-name: FadeInItems;
-    animation-timing-function: ease-in;
-    animation-duration: 1.2s;
-  }
+      .check3 {
+        animation-name: FadeInItems;
+        animation-timing-function: ease-in;
+        animation-duration: 1.3s;
+      }
+
+      .check4 {
+        animation-name: FadeInItems;
+        animation-timing-function: ease-in;
+        animation-duration: 1.6s;
+      }`
+      : ``}
 
   @media (max-width: 1200px) {
     width: 100vw;
@@ -181,6 +191,7 @@ const Info = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, true);
+    handleScroll();
     return window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -201,7 +212,7 @@ const Info = () => {
     <Wrapper ref={Reference}>
       <Spacer />
       <ImageDiv scroll={scroll}>
-        <SvgImage />
+        <SvgImage scroll={scroll} />
       </ImageDiv>
       <Spacer />
       <ContentDiv>
