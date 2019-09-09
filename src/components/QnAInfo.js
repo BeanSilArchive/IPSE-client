@@ -143,7 +143,7 @@ const SvgImage = styled(Img1)`
   ${props =>
     props.scroll
       ? `
-      .check1 {
+      .board {
         animation-name: FadeInItems;
         animation-timing-function: ease-in;
         animation-duration: 0.6s;
@@ -159,19 +159,19 @@ const SvgImage = styled(Img1)`
           }
         }
       }
-      .check2 {
+      .head {
         animation-name: FadeInItems;
         animation-timing-function: ease-in;
         animation-duration: 0.9s;
       }
 
-      .check3 {
+      .desc {
         animation-name: FadeInItems;
         animation-timing-function: ease-in;
         animation-duration: 1.2s;
       }
 
-      .check4 {
+      .person {
         animation-name: FadeInItems;
         animation-timing-function: ease-in;
         animation-duration: 1.5s;
