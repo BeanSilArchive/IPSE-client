@@ -11,7 +11,7 @@ import {
   SvgImage1
 } from "styles/HomeStyle";
 
-import DateCounter from "components/DateCounter";
+import DateCounter from "components/Home/DateCounter";
 
 const Info = () => {
   const [scroll, setScroll] = useState(false);
