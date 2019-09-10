@@ -82,7 +82,7 @@ const EntryButton = styled.div`
 `;
 
 const DateDiv = styled.div`
-  margin-top: 30px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
 
