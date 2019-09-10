@@ -1,7 +1,7 @@
 import React, { createRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import oc from "open-color";
-import Icon from "@material-ui/core/Icon";
+import GetAppIcon from '@material-ui/icons/GetApp';
 
 import { ReactComponent as Img1 } from "asset/notice_image_2.svg";
 import downloadfile from "asset/2020학년도입학전형요강(최종).pdf";
@@ -246,7 +246,7 @@ const Info = () => {
           </SubHeading>
           <DownLoadLink href={downloadfile} download>
             <EntryButton scroll={scroll}>
-              <Icon>get_app</Icon>
+              <GetAppIcon/>
               다운로드
             </EntryButton>
           </DownLoadLink>
