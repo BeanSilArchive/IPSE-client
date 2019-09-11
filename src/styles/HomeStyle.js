@@ -7,6 +7,8 @@ import { ReactComponent as Img3 } from "asset/qna_image_1.svg";
 
 import test1 from "asset/test1.png";
 
+import { Link } from "react-router-dom";
+
 export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -69,8 +71,8 @@ export const SubHeading = styled.h2`
   ${props =>
     props.scroll
       ? `
-      opacity: 1;
-      animation-name: FadeIn;
+    opacity: 1;
+    animation-name: FadeIn;
     animation-timing-function: ease-in;
     animation-duration: 0.7s;`
       : ``};
@@ -83,6 +85,43 @@ export const DownLoadLink = styled.a`
   &:visited {
     text-decoration: none;
   }
+`;
+
+export const LinkButton = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid ${oc.gray[9]};
+  font-size: 2rem;
+  font-weight: 600;
+  width: 20rem;
+  height: 3.5rem;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: ${oc.gray[9]};
+  letter-spacing: 2px;
+  opacity: 0;
+
+  &:link {
+    text-decoration: none;
+  }
+  &:visited {
+    text-decoration: none;
+  }
+  &:hover {
+    background-color: ${oc.gray[9]};
+    color: ${oc.gray[0]};
+  }
+
+  ${props =>
+    props.scroll
+      ? `
+    opacity: 1;
+    animation-name: FadeIn;
+    animation-timing-function: ease-in;
+    animation-duration: 1s;`
+      : ``}
 `;
 
 export const Button = styled.div`

@@ -1,11 +1,13 @@
 import React, { useState, useEffect, createRef } from "react";
+import { Link } from "react-router-dom";
+
 import {
   Wrapper,
   Spacer,
   ContentDiv,
   Heading,
   SubHeading,
-  Button,
+  LinkButton,
   DateDiv,
   ImageDiv,
   SvgImage1
@@ -31,10 +33,11 @@ const Info = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, true);
     handleScroll();
-    return window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleScroll = () => {
+    console.log("a");
     const element = Reference.current;
     const top = posTop();
     const elementPositionY = element.getBoundingClientRect().top + top;
@@ -46,26 +49,29 @@ const Info = () => {
       setScroll(true);
     }
   };
+
   return (
     <Wrapper ref={Reference}>
       <Spacer />
       <ContentDiv>
-        <Heading scroll={scroll}>
+        <Heading scroll={scroll ? 1 : 0}>
           온라인으로
           <br />
           간편하게 원서접수
         </Heading>
-        <SubHeading scroll={scroll}>
+        <SubHeading scroll={scroll ? 1 : 0}>
           광주소프트웨어마이스터고등학교 원서접수 시스템
         </SubHeading>
-        <Button scroll={scroll}>지금 접수하기</Button>
+        <LinkButton to="/resume" scroll={scroll ? 1 : 0}>
+          지금 접수하기
+        </LinkButton>
         <DateDiv>
           <DateCounter endDate={"09/14/19 0:12:43"} />
           <span>접수 마감까지 남은 시간</span>
         </DateDiv>
       </ContentDiv>
       <Spacer />
-      <ImageDiv scroll={scroll}>
+      <ImageDiv scroll={scroll ? 1 : 0}>
         <SvgImage1 />
       </ImageDiv>
       <Spacer />

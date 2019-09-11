@@ -33,7 +33,7 @@ const Info = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, true);
     handleScroll();
-    return window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleScroll = () => {
@@ -57,21 +57,21 @@ const Info = () => {
       />
       <Wrapper ref={Reference}>
         <Spacer />
-        <ImageDiv scroll={scroll}>
-          <SvgImage2 scroll={scroll} />
+        <ImageDiv scroll={scroll ? 1 : 0}>
+          <SvgImage2 scroll={scroll ? 1 : 0} />
         </ImageDiv>
         <Spacer />
         <ContentDiv>
-          <Heading scroll={scroll}>
+          <Heading scroll={scroll ? 1 : 0}>
             수험자 안내사항을
             <br />
             확인하세요
           </Heading>
-          <SubHeading scroll={scroll}>
+          <SubHeading scroll={scroll ? 1 : 0}>
             입학전형요강 PDF파일을 다운받을 수 있습니다.
           </SubHeading>
           <DownLoadLink href={downloadfile} download>
-            <Button scroll={scroll}>
+            <Button scroll={scroll ? 1 : 0}>
               <Icon>get_app</Icon>
               다운로드
             </Button>

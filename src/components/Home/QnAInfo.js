@@ -29,7 +29,7 @@ const Info = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, true);
     handleScroll();
-    return window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleScroll = () => {
@@ -54,19 +54,19 @@ const Info = () => {
       <Wrapper ref={Reference}>
         <Spacer />
         <ContentDiv>
-          <Heading scroll={scroll}>
+          <Heading scroll={scroll ? 1 : 0}>
             입학 전 궁금한 사항들을
             <br />
             질문하세요
           </Heading>
-          <SubHeading scroll={scroll}>
+          <SubHeading scroll={scroll ? 1 : 0}>
             학교 관련자분께 직접 질문할 수 있습니다.
           </SubHeading>
-          <Button scroll={scroll}>Q&A 게시판 이동</Button>
+          <Button scroll={scroll ? 1 : 0}>Q&A 게시판 이동</Button>
         </ContentDiv>
         <Spacer />
-        <ImageDiv scroll={scroll}>
-          <SvgImage3 scroll={scroll} />
+        <ImageDiv scroll={scroll ? 1 : 0}>
+          <SvgImage3 scroll={scroll ? 1 : 0} />
         </ImageDiv>
         <Spacer />
       </Wrapper>

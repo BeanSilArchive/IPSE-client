@@ -1,7 +1,7 @@
 import React from "react";
 
 const Resume = () => {
-  return <div></div>;
+  return <div style={{ height: `300%` }}></div>;
 };
 
 export default Resume;
