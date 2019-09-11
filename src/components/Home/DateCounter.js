@@ -67,13 +67,13 @@ const DateCounter = ({ endDate }) => {
   const { days, hours, min, sec } = state;
 
   useEffect(() => {
-    setIntervalID(
-      setInterval(() => {
-        const date = calculateCountdown(endDate);
-        date ? dispatch(date) : clearInterval(intervalID);
-      }, 1000)
-    );
-    return clearInterval(intervalID);
+    const id = setInterval(() => {
+      const date = calculateCountdown(endDate);
+      date ? dispatch(date) : clearInterval(intervalID);
+    }, 1000);
+
+    setIntervalID(id);
+    return () => clearInterval(id);
   }, []);
 
   const formatedHours = hours.toString().padStart(2, "0");

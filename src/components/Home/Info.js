@@ -30,14 +30,7 @@ const Info = () => {
     return 0;
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, true);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const handleScroll = () => {
-    console.log("a");
     const element = Reference.current;
     const top = posTop();
     const elementPositionY = element.getBoundingClientRect().top + top;
@@ -49,6 +42,12 @@ const Info = () => {
       setScroll(true);
     }
   };
+
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <Wrapper ref={Reference}>
