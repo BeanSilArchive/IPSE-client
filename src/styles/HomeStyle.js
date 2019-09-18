@@ -235,6 +235,7 @@ export const SvgImage1 = styled(Img1)`
       }
     }
   }
+  
   .desc {
     animation-name: FadeInItems;
     animation-timing-function: ease-in;

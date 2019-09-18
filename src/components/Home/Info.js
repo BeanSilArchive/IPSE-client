@@ -66,7 +66,7 @@ const Info = () => {
           지금 접수하기
         </LinkButton>
         <DateDiv>
-          <DateCounter endDate={"09/14/19 0:12:43"} />
+          <DateCounter endDate={"09/31/19 0:12:43"} />
           <span>접수 마감까지 남은 시간</span>
         </DateDiv>
       </ContentDiv>
