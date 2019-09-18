@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import oc from "open-color";
+import Modal from 'react-modal';
 
 const Positioner = styled.div`
   position: fixed;
@@ -64,7 +65,7 @@ const Header = () => {
         <span>안내사항</span>
         <span>원서접수</span>
         <span>Q&A</span>
-        <LoginButton href="/auth">로그인</LoginButton>
+        <LoginButton href='/auth'>로그인</LoginButton>
       </ContentDiv>
     </Positioner>
   );

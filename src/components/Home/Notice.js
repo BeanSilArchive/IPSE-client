@@ -1,5 +1,6 @@
 import React, { createRef, useState, useEffect } from "react";
-import Icon from "@material-ui/core/Icon";
+import Icon from '@material-ui/icons/GetApp';
+
 
 import {
   Wrapper,
@@ -72,7 +73,7 @@ const Info = () => {
           </SubHeading>
           <DownLoadLink href={downloadfile} download>
             <Button scroll={scroll ? 1 : 0}>
-              <Icon>get_app</Icon>
+              <Icon />
               다운로드
             </Button>
           </DownLoadLink>
