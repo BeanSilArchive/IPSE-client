@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import oc from "open-color";
+
+import Signin from "components/Auth/Signin";
 
 const Positioner = styled.div`
   position: fixed;
@@ -23,6 +25,10 @@ const ContentDiv = styled.div`
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
+  span {
+    margin: 0 15px;
+    font-size: 1.05rem;
+  }
 `;
 
 const Spacer = styled.div`
@@ -51,15 +57,30 @@ const LoginButton = styled.a`
   }
 `;
 
+const Modal = styled.div`
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+`;
+
 const Header = () => {
   return (
-    <Positioner>
-      <ContentDiv>
-        <h1 style={{ margin: `15px`, fontWeight: `400` }}>잎새</h1>
-        <Spacer />
-        <LoginButton href="/auth">로그인</LoginButton>
-      </ContentDiv>
-    </Positioner>
+    <>
+      <Positioner>
+        <ContentDiv>
+          <h1 style={{ margin: `15px`, fontWeight: `400` }}>잎새</h1>
+          <Spacer />
+          <span>원서접수</span>
+          <span>안내사항</span>
+          <span>Q&A</span>
+          <LoginButton href="/auth">로그인</LoginButton>
+        </ContentDiv>
+      </Positioner>
+    </>
   );
 };
 
