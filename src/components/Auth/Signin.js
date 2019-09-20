@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Img1 } from "asset/Auth_main.svg";
 import EmailIcon from "@material-ui/icons/Email";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
+import ClearIcon from "@material-ui/icons/Clear";
 
-const Wrapper = styled.div`
+const Positioner = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -15,13 +16,36 @@ const Wrapper = styled.div`
 
 const LoginBox = styled.div`
   display: flex;
-  flex-direction: row;
-  width: 80%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1500px;
   height: 80%;
   background-color: rgb(248, 250, 251);
   box-sizing: border-box;
   box-shadow: 0px 0px 3px gray;
   border-radius: 5px;
+`;
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+`;
+
+const CancelButtonWrapper = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
+const CancelButton = styled(ClearIcon)`
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  margin: 30px;
 `;
 
 const Left = styled.div`
@@ -302,44 +326,49 @@ const Form = styled.form`
   }
 `;
 
-const Signin = () => {
+const Signin = ({ toggleModal }) => {
   return (
-    <Wrapper>
+    <Positioner>
       <LoginBox>
-        <Left>
-          <SvgImage />
-        </Left>
-        <Right>
-          <h1>환영합니다. :)</h1>
-          <span>
-            광주소프트웨어 마이스터고등학교 원서접수 프로그램
-            <br />
-            잎새에 오신 것을 환영합니다.
-          </span>
-          <Form>
-            <div id="First">
-              <EmailIcon />
-              <input type="id" placeholder="아이디" />
-            </div>
-            <div id="Second">
-              <VpnKeyIcon />
-              <input type="password" placeholder="비밀번호" />
-            </div>
-            <div id="Save-pwd">
-              <Link to="/">Forget Password?</Link>
-            </div>
-            <div id="btn">
-              <button id="Login" type="submit">
-                Login Now
-              </button>
-              <button id="Register" type="button">
-                Create Account
-              </button>
-            </div>
-          </Form>
-        </Right>
+        <CancelButtonWrapper>
+          <CancelButton style={{ fontSize: `3rem` }} onClick={toggleModal} />
+        </CancelButtonWrapper>
+        <Wrapper>
+          <Left>
+            <SvgImage />
+          </Left>
+          <Right>
+            <h1>환영합니다 :)</h1>
+            <span>
+              광주소프트웨어 마이스터고등학교 원서접수 프로그램
+              <br />
+              잎새에 오신 것을 환영합니다.
+            </span>
+            <Form>
+              <div id="First">
+                <EmailIcon />
+                <input type="id" placeholder="아이디" />
+              </div>
+              <div id="Second">
+                <VpnKeyIcon />
+                <input type="password" placeholder="비밀번호" />
+              </div>
+              <div id="Save-pwd">
+                <Link to="/">Forget Password?</Link>
+              </div>
+              <div id="btn">
+                <button id="Login" type="submit">
+                  Login Now
+                </button>
+                <button id="Register" type="button">
+                  Create Account
+                </button>
+              </div>
+            </Form>
+          </Right>
+        </Wrapper>
       </LoginBox>
-    </Wrapper>
+    </Positioner>
   );
 };
 
