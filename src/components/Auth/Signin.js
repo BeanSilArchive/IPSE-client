@@ -338,7 +338,7 @@ const Signin = ({ toggleModal }) => {
             <SvgImage />
           </Left>
           <Right>
-            <h1>환영합니다. :)</h1>
+            <h1>환영합니다 :)</h1>
             <span>
               광주소프트웨어 마이스터고등학교 원서접수 프로그램
               <br />

@@ -10,6 +10,7 @@ import test1 from "asset/test1.png";
 import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
+  scroll-snap-align: start;
   width: 100%;
   height: 100%;
   padding-top: 50px;
@@ -235,7 +236,7 @@ export const SvgImage1 = styled(Img1)`
       }
     }
   }
-  
+
   .desc {
     animation-name: FadeInItems;
     animation-timing-function: ease-in;
