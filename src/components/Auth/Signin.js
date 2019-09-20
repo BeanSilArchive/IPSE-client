@@ -41,7 +41,7 @@ const SvgImage = styled(Img1)`
     .avatar {
     animation-name: FadeInItems;
     animation-timing-function: ease-in;
-    animation-duration: 0.6s;
+    animation-duration: 0.3s;
 
     @keyframes FadeInItems {
       0% {
@@ -58,7 +58,7 @@ const SvgImage = styled(Img1)`
   .check {
     animation-name: FadeInItems;
     animation-timing-function: ease-in;
-    animation-duration: 1s;
+    animation-duration: 0.6s;
 
     @keyframes FadeInItems {
       0% {
@@ -75,7 +75,7 @@ const SvgImage = styled(Img1)`
   .box {
     animation-name: FadeInItems;
     animation-timing-function: ease-in;
-    animation-duration: 1.3s;
+    animation-duration: 0.9s;
 
     @keyframes FadeInItems {
       0% {
@@ -88,12 +88,11 @@ const SvgImage = styled(Img1)`
       }
     }
   }
-  
 
-  .per {
+  .leaf {
     animation-name: FadeInItems;
     animation-timing-function: ease-in;
-    animation-duration: 1.8s;
+    animation-duration: 1.2s;
 
     @keyframes FadeInItems {
       0% {
@@ -105,12 +104,11 @@ const SvgImage = styled(Img1)`
       100% {
       }
     }
-  }
-   
 
   @media (max-width: 1200px) {
     width: 100vw;
   }
+
 `;
 
 const Right = styled.div`
@@ -119,6 +117,22 @@ const Right = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
+
+    animation-name: FadeInItems;
+    animation-timing-function: ease-in;
+    animation-duration: 1.2s;
+
+    @keyframes FadeInItems {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+      }
+    }
+
     h1 {
         margin: 0px;
         margin-right: auto;
@@ -130,8 +144,9 @@ const Right = styled.div`
         margin-top: 5%;
         margin-right: auto;
         margin-left: 10%;
+        margin-bottom: 8%;
     }
-`
+`;
 
 const Form = styled.form`
     display: flex;
@@ -158,8 +173,14 @@ const Form = styled.form`
             height:95%;
             width: 100%;
             border: none;
-            font-size: 1.4em;
+            font-size: 1.1em;
             padding-left: 20px;
+            font-family: "Noto Sans KR", "Noto Sans", sans-serif;
+
+            &::placeholder {
+              font-family: 'Noto Serif KR', serif;
+
+            }
         }
     }
     #Second{
@@ -179,14 +200,21 @@ const Form = styled.form`
             height:95%;
             width: 100%;
             border: none;
-            font-size: 1.4em;
+            font-size: 1.1em;
             padding-left: 20px;
+            font-family: "Noto Sans KR", "Noto Sans", sans-serif;
+
+            &::placeholder {
+              font-family: 'Noto Serif KR', serif;
+
+            }
         }
     }
     #Save-pwd {
         display:flex;
         width: 100%;
         height: 20%;
+        font-size: 1rem;
         flex-direction: row;
         align-items: center;
         a {
@@ -254,10 +282,11 @@ const Form = styled.form`
             width: 30%;
             height: 50%;
             border-radius: 50px;
-            font-size: 1.5em;
             margin-right: 20px;
             color: white;
+            letter-spacing: 0.5px;
             background-color: rgb(80, 142, 242);            
+    font-size: 1rem;
             outline: none;
         }
         #Register {
@@ -266,45 +295,39 @@ const Form = styled.form`
             width: 30%;
             height: 50%;
             border-radius: 50px;
-            font-size: 1.5em;
+            letter-spacing: 0.5px;
             background-color: rgb(255, 255, 255);
+            font-size: 1rem;
             outline: none;
         }
     }
-    
-`
+`;
 
-class Signin extends Component {
-    
-    render () {
-        return (
-            <Wrapper>
+const Signin = () => {
+
+   return (
+    <Wrapper>
                 <LoginBox>
                     <Left>
                         <SvgImage />
                     </Left>
                     <Right>
-                        <h1>WelCome Back :)</h1>
+                        <h1>환영합니다. :)</h1>
                         <span>
-                            To keep Connect with us please login with your personal
+                            광주소프트웨어 마이스터고등학교 원서접수 프로그램
                             <br/>
-                            information by email address and password 🔔
+                            잎새에 오신 것을 환영합니다.
                         </span>
                         <Form>
                             <div id="First">
                                 <EmailIcon/>
-                                <input type="email" placeholder="Email Address" />
+                                <input type="id" placeholder="아이디" />
                             </div>
                             <div id="Second">
                                 <VpnKeyIcon/>
-                                <input type="password" placeholder="PassWord" />
+                                <input type="password" placeholder="비밀번호" />
                             </div>
                             <div id="Save-pwd">
-                                <div class="round">
-                                    <input type="checkbox" id="checkbox" />
-                                    <label for="checkbox"></label>
-                                </div>
-                                <span>Remember Me</span>
                                 <Link to="/">Forget Password?</Link>
                             </div>
                             <div id="btn">
@@ -315,9 +338,8 @@ class Signin extends Component {
                     </Right>
                 </LoginBox>
             </Wrapper>
-        )
-    }
-}
+  );
+};
 
 
 export default Signin;

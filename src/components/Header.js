@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import oc from "open-color";
-import Modal from 'react-modal';
+
 
 const Positioner = styled.div`
   position: fixed;
@@ -57,6 +57,7 @@ const LoginButton = styled.a`
 `;
 
 const Header = () => {
+
   return (
     <Positioner>
       <ContentDiv>
