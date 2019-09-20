@@ -35,7 +35,7 @@ const Spacer = styled.div`
   flex: 1;
 `;
 
-const LoginButton = styled.a`
+const LoginButton = styled.button`
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -68,6 +68,22 @@ const Modal = styled.div`
 `;
 
 const Header = () => {
+  const [modal, setModal] = useState(false);
+
+  const returnModal = () => {
+    if (modal) {
+      return (
+        <Modal>
+          <Signin toggleModal={toggleModal} />
+        </Modal>
+      );
+    }
+  };
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
   return (
     <>
       <Positioner>
@@ -77,9 +93,10 @@ const Header = () => {
           <span>원서접수</span>
           <span>안내사항</span>
           <span>Q&A</span>
-          <LoginButton href="/auth">로그인</LoginButton>
+          <LoginButton onClick={toggleModal}>로그인</LoginButton>
         </ContentDiv>
       </Positioner>
+      {returnModal()}
     </>
   );
 };
