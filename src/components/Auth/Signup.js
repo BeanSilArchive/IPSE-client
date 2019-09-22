@@ -310,14 +310,8 @@ const Signin = ({ setIsSignUp }) => {
           <SvgImage />
         </Left>
         <Right>
-          <h1>어서오세요!</h1>
-          <span>
-            광주 소프트웨어 마이스터고등학교 원서접수 시스템,
-            <br />
-            잎새에 오신 것을 환영합니다.
-            <br />
-            로그인 후 잎새의 다양한 편의기능들을 이용하세요.
-          </span>
+          <h1>처음이신가요?</h1>
+          <span>회원가입 후 온라인으로 간편하게 원서접수하세요.</span>
           <Form onSubmit={onSubmit}>
             <div id="First">
               <EmailIcon />
@@ -350,7 +344,7 @@ const Signin = ({ setIsSignUp }) => {
               <button
                 id="Register"
                 type="button"
-                onClick={() => setIsSignUp(true)}
+                onClick={() => setIsSignUp(false)}
               >
                 회원가입
               </button>
