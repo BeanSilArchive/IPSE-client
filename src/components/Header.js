@@ -1,8 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import oc from "open-color";
 
-import Signin from "components/Auth/Signin";
+import AuthContainer from "containers/AuthContainer";
+
 import AuthContextProvider, { useStateValue } from "context/AuthContext";
 
 const Positioner = styled.div`
@@ -101,7 +102,7 @@ const Header = () => {
     if (modal) {
       return (
         <Modal>
-          <Signin toggleModal={toggleModal} />
+          <AuthContainer toggleModal={toggleModal} />
         </Modal>
       );
     }
