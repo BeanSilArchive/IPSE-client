@@ -1,7 +1,9 @@
 import React, { Component, useState, useEffect } from "react";
 import styled from "styled-components";
+import oc from "open-color";
+
 import { Link } from "react-router-dom";
-import { ReactComponent as Img1 } from "asset/Auth_main.svg";
+import { ReactComponent as Img1 } from "asset/auth_image_1.svg";
 import EmailIcon from "@material-ui/icons/Email";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -21,7 +23,7 @@ const LoginBox = styled.div`
   align-items: center;
   width: 1500px;
   height: 80%;
-  background-color: rgb(248, 250, 251);
+  background-color: white;
   box-sizing: border-box;
   box-shadow: 0px 0px 3px gray;
   border-radius: 5px;
@@ -55,32 +57,30 @@ const Left = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  animation-name: PopUp;
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
+
+  opacity: 1;
+
+  @keyframes PopUp {
+    0% {
+      opacity: 0;
+      padding-top: 30px;
+    }
+    100% {
+    }
+  }
 `;
 
 const SvgImage = styled(Img1)`
-  width: 30vw;
+  width: 37vw;
   height: auto;
   margin: auto 0;
   padding: 20px;
 
-  .avatar {
-    animation-name: FadeInItems;
-    animation-timing-function: ease-in;
-    animation-duration: 0.3s;
-
-    @keyframes FadeInItems {
-      0% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 0;
-      }
-      100% {
-      }
-    }
-  }
-
-  .check {
+  .person {
     animation-name: FadeInItems;
     animation-timing-function: ease-in;
     animation-duration: 0.6s;
@@ -97,42 +97,31 @@ const SvgImage = styled(Img1)`
     }
   }
 
-  .box {
+  .avatar {
     animation-name: FadeInItems;
     animation-timing-function: ease-in;
     animation-duration: 0.9s;
-
-    @keyframes FadeInItems {
-      0% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 0;
-      }
-      100% {
-      }
-    }
   }
 
-  .leaf {
+  .line1 {
+    animation-name: FadeInItems;
+    animation-timing-function: ease-in;
+    animation-duration: 1s;
+  }
+  .line2 {
     animation-name: FadeInItems;
     animation-timing-function: ease-in;
     animation-duration: 1.2s;
-
-    @keyframes FadeInItems {
-      0% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 0;
-      }
-      100% {
-      }
-    }
-
-    @media (max-width: 1200px) {
-      width: 100vw;
-    }
+  }
+  .line3 {
+    animation-name: FadeInItems;
+    animation-timing-function: ease-in;
+    animation-duration: 1.4s;
+  }
+  .line4 {
+    animation-name: FadeInItems;
+    animation-timing-function: ease-in;
+    animation-duration: 1.6s;
   }
 `;
 
@@ -142,51 +131,52 @@ const Right = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  box-sizing: border-box;
+
+  padding-top: 40px;
+
+  h1 {
+    margin: 0px;
+    margin-right: auto;
+    font-size: 3.5rem;
+    font-weight: 300;
+    font-family: "Do Hyeon";
+
+    animation-name: FadeInItems;
+    animation-timing-function: ease-in;
+    animation-duration: 0.6s;
+  }
+  span {
+    margin-top: 5%;
+    margin-right: auto;
+    margin-bottom: 30px;
+
+    font-size: 1.2rem;
+
+    animation-name: FadeInItems;
+    animation-timing-function: ease-in;
+    animation-duration: 0.9s;
+  }
+`;
+
+const Form = styled.form`
+  width: 100%;
+  display: flex;
+  height: 40%;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
 
   animation-name: FadeInItems;
   animation-timing-function: ease-in;
   animation-duration: 1.2s;
 
-  @keyframes FadeInItems {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0;
-    }
-    100% {
-    }
-  }
-
-  h1 {
-    margin: 0px;
-    margin-right: auto;
-    font-size: 3rem;
-    font-weight: 300;
-    margin-left: 10%;
-  }
-  span {
-    margin-top: 5%;
-    margin-right: auto;
-    margin-left: 10%;
-    margin-bottom: 8%;
-  }
-`;
-
-const Form = styled.form`
-  display: flex;
-  height: 40%;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 20px;
-
   #First {
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
+    border-bottom: 1px solid ${oc.gray[4]};
     width: 80%;
-    background-color: rgb(239, 242, 245);
     height: 30%;
-    margin-left: 10%;
     display: flex;
     align-items: center;
     svg {
@@ -194,7 +184,6 @@ const Form = styled.form`
       font-size: 2em;
     }
     input {
-      background-color: rgb(239, 242, 245);
       height: 95%;
       width: 100%;
       border: none;
@@ -208,14 +197,14 @@ const Form = styled.form`
     }
   }
   #Second {
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;
+    /* border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px; */
     width: 80%;
-    background-color: #ffffff;
+    border-bottom: 1px solid ${oc.gray[4]};
     height: 30%;
-    margin-left: 10%;
     display: flex;
     align-items: center;
+    box-sizing: border-box;
     svg {
       margin-left: 20px;
       font-size: 2em;
@@ -233,97 +222,65 @@ const Form = styled.form`
       }
     }
   }
+
   #Save-pwd {
-    display: flex;
     width: 100%;
-    height: 20%;
-    font-size: 1rem;
-    flex-direction: row;
-    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
     a {
-      margin-left: auto;
-      margin-right: 10%;
-      text-decoration: none;
-      color: black;
-    }
-    .round {
-      position: relative;
-      margin-left: 10%;
-    }
-    .round label {
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 50%;
-      cursor: pointer;
-      height: 28px;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 28px;
-    }
-    .round label:after {
-      border: 2px solid #fff;
-      border-top: none;
-      border-right: none;
-      content: "";
-      height: 6px;
-      left: 7px;
-      opacity: 0;
-      position: absolute;
-      top: 8px;
-      transform: rotate(-45deg);
-      width: 12px;
-    }
-    .round input[type="checkbox"] {
-      visibility: hidden;
-    }
-    .round input[type="checkbox"]:checked + label {
-      background-color: #66bb6a;
-      border-color: #66bb6a;
-    }
-    .round input[type="checkbox"]:checked + label:after {
-      opacity: 1;
-    }
-    span {
-      margin: 0px;
-      margin-top: 5px;
-      margin-left: 20px;
-    }
-    button {
+      margin-right: 20%;
+
+      padding: 3px 0;
+      color: ${oc.gray[6]};
+      &:link {
+        text-decoration: none;
+      }
+      &:visited {
+        text-decoration: none;
+      }
     }
   }
+
   #btn {
     display: flex;
     width: 100%;
     height: 50%;
     flex-direction: row;
-    margin-left: 10%;
+    padding-right: 20%;
     margin-top: 5%;
+    box-sizing: border-box;
+
     #Login {
-      box-shadow: 0px 0px 3px gray;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
       border: none;
-      width: 30%;
+      width: 45%;
       height: 50%;
-      border-radius: 50px;
+      border-radius: 5px;
       margin-right: 20px;
       color: white;
       letter-spacing: 0.5px;
-      background-color: rgb(80, 142, 242);
-      font-size: 1rem;
+      background-color: ${oc.gray[9]};
+      font-size: 1.3rem;
+      cursor: pointer;
       outline: none;
     }
     #Register {
-      box-shadow: 0px 0px 3px gray;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
       border: none;
-      width: 30%;
+      width: 45%;
       height: 50%;
-      border-radius: 50px;
+      border-radius: 5px;
       letter-spacing: 0.5px;
       background-color: rgb(255, 255, 255);
-      font-size: 1rem;
+      font-size: 1.3rem;
+      cursor: pointer;
       outline: none;
     }
   }
+`;
+
+const Spacer = styled.div`
+  flex: 1;
 `;
 
 const Signin = ({ toggleModal }) => {
@@ -338,11 +295,13 @@ const Signin = ({ toggleModal }) => {
             <SvgImage />
           </Left>
           <Right>
-            <h1>환영합니다 :)</h1>
+            <h1>어서오세요!</h1>
             <span>
-              광주소프트웨어 마이스터고등학교 원서접수 프로그램
+              광주 소프트웨어 마이스터고등학교 원서접수 시스템,
               <br />
               잎새에 오신 것을 환영합니다.
+              <br />
+              로그인 후 잎새의 다양한 편의기능들을 이용하세요.
             </span>
             <Form>
               <div id="First">
@@ -354,14 +313,15 @@ const Signin = ({ toggleModal }) => {
                 <input type="password" placeholder="비밀번호" />
               </div>
               <div id="Save-pwd">
-                <Link to="/">Forget Password?</Link>
+                <Link to="/">비밀번호를 잊어버리셨나요?</Link>
               </div>
               <div id="btn">
                 <button id="Login" type="submit">
-                  Login Now
+                  로그인
                 </button>
+                <Spacer />
                 <button id="Register" type="button">
-                  Create Account
+                  회원가입
                 </button>
               </div>
             </Form>

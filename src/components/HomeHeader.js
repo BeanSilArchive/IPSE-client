@@ -68,7 +68,9 @@ const Modal = styled.div`
 `;
 
 const Header = () => {
-  const [modal, setModal] = useState(false);
+  // const [modal, setModal] = useState(false);
+  // for test
+  const [modal, setModal] = useState(true);
 
   const returnModal = () => {
     if (modal) {
