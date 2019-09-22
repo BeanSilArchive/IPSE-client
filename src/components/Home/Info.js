@@ -61,7 +61,7 @@ const Info = () => {
         <SubHeading scroll={scroll ? 1 : 0}>
           광주소프트웨어마이스터고등학교 원서접수 시스템
         </SubHeading>
-        <LinkButton to="/resume" scroll={scroll ? 1 : 0}>
+        <LinkButton to="/application" scroll={scroll ? 1 : 0}>
           지금 접수하기
         </LinkButton>
         <DateDiv>
