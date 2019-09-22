@@ -190,7 +190,9 @@ const Form = styled.form`
       font-size: 1.1em;
       padding-left: 20px;
       font-family: "Noto Sans KR", "Noto Sans", sans-serif;
-
+      &:focus {
+        outline: none;
+      }
       &::placeholder {
         font-family: "Noto Serif KR", serif;
       }
@@ -216,6 +218,9 @@ const Form = styled.form`
       font-size: 1.1em;
       padding-left: 20px;
       font-family: "Noto Sans KR", "Noto Sans", sans-serif;
+      &:focus {
+        outline: none;
+      }
 
       &::placeholder {
         font-family: "Noto Serif KR", serif;

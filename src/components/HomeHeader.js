@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import oc from "open-color";
 
 import Signin from "components/Auth/Signin";
+import AuthContextProvider, { useStateValue } from "context/AuthContext";
 
 const Positioner = styled.div`
   position: fixed;
@@ -68,9 +69,8 @@ const Modal = styled.div`
 `;
 
 const Header = () => {
-  // const [modal, setModal] = useState(false);
-  // for test
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
+  const { user } = useStateValue();
 
   const returnModal = () => {
     if (modal) {
@@ -86,8 +86,13 @@ const Header = () => {
     setModal(!modal);
   };
 
+  const setToken = () => {
+    localStorage.setItem("ipse-token", "test");
+  };
+
   return (
-    <>
+    <AuthContextProvider>
+      {console.log(user)}
       <Positioner>
         <ContentDiv>
           <h1 style={{ margin: `15px`, fontWeight: `400` }}>잎새</h1>
@@ -99,7 +104,7 @@ const Header = () => {
         </ContentDiv>
       </Positioner>
       {returnModal()}
-    </>
+    </AuthContextProvider>
   );
 };
 
