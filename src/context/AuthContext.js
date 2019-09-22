@@ -3,12 +3,16 @@ import React, { useReducer, useContext } from "react";
 const AuthState = (() => {
   const token = localStorage.getItem("ipse-token");
 
-  if (token) {
-    return { user: token };
+  if (token != null) {
+    return {
+      token: null,
+      isloggedin: true
+    };
   }
 
   return {
-    user: null
+    token: token,
+    isloggedin: false
   };
 })();
 

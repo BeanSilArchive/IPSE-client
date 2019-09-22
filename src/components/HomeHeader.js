@@ -50,11 +50,34 @@ const LoginButton = styled.button`
   cursor: pointer;
   border-radius: 50px;
   color: ${oc.gray[7]};
+  outline: none;
 
   &:hover {
     border: 2px solid ${oc.gray[8]};
     background-color: ${oc.gray[1]};
     color: ${oc.gray[8]};
+  }
+`;
+
+const LogoutButton = styled.button`
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid ${oc.gray[9]};
+  font-size: 1rem;
+  font-weight: 600;
+  width: 5rem;
+  height: 2rem;
+  margin: 0 15px;
+  cursor: pointer;
+  border-radius: 50px;
+  background-color: ${oc.gray[9]};
+  color: white;
+  outline: none;
+
+  &:hover {
+    background-color: ${oc.gray[9]};
   }
 `;
 
@@ -70,7 +93,9 @@ const Modal = styled.div`
 
 const Header = () => {
   const [modal, setModal] = useState(false);
-  const { user } = useStateValue();
+  const user = useStateValue();
+
+  const n = null;
 
   const returnModal = () => {
     if (modal) {
@@ -86,13 +111,23 @@ const Header = () => {
     setModal(!modal);
   };
 
-  const setToken = () => {
-    localStorage.setItem("ipse-token", "test");
+  const logOut = () => {
+    localStorage.removeItem("ipse-token");
+    window.location.reload();
+  };
+
+  const returnLoginButton = () => {
+    console.log(user.isloggedin);
+
+    if (user.isloggedin) {
+      return <LogoutButton onClick={logOut}>로그아웃</LogoutButton>;
+    } else {
+      return <LoginButton onClick={toggleModal}>로그인</LoginButton>;
+    }
   };
 
   return (
     <AuthContextProvider>
-      {console.log(user)}
       <Positioner>
         <ContentDiv>
           <h1 style={{ margin: `15px`, fontWeight: `400` }}>잎새</h1>
@@ -100,7 +135,7 @@ const Header = () => {
           <span>원서접수</span>
           <span>안내사항</span>
           <span>Q&A</span>
-          <LoginButton onClick={toggleModal}>로그인</LoginButton>
+          {returnLoginButton()}
         </ContentDiv>
       </Positioner>
       {returnModal()}

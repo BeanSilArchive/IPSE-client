@@ -1,9 +1,12 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useReducer } from "react";
 import styled from "styled-components";
 import oc from "open-color";
 
+import * as authApi from "api/auth";
+
 import { Link } from "react-router-dom";
 import { ReactComponent as Img1 } from "asset/auth_image_1.svg";
+
 import EmailIcon from "@material-ui/icons/Email";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -289,6 +292,38 @@ const Spacer = styled.div`
 `;
 
 const Signin = ({ toggleModal }) => {
+  function reducer(state, action) {
+    return {
+      ...state,
+      [action.name]: action.value
+    };
+  }
+
+  const [state, dispatch] = useReducer(reducer, {
+    id: "",
+    password: ""
+  });
+
+  const { id, password } = state;
+
+  const onChange = e => {
+    dispatch(e.target);
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+
+    authApi
+      .login({ id, password })
+      .then(result => {
+        localStorage.setItem("ipse-token", result.data.token);
+        window.location.reload();
+      })
+      .catch(result => {
+        console.log(result);
+      });
+  };
+
   return (
     <Positioner>
       <LoginBox>
@@ -308,14 +343,26 @@ const Signin = ({ toggleModal }) => {
               <br />
               로그인 후 잎새의 다양한 편의기능들을 이용하세요.
             </span>
-            <Form>
+            <Form onSubmit={onSubmit}>
               <div id="First">
                 <EmailIcon />
-                <input type="id" placeholder="아이디" />
+                <input
+                  type="id"
+                  placeholder="아이디"
+                  name="id"
+                  value={id}
+                  onChange={onChange}
+                />
               </div>
               <div id="Second">
                 <VpnKeyIcon />
-                <input type="password" placeholder="비밀번호" />
+                <input
+                  type="password"
+                  placeholder="비밀번호"
+                  name="password"
+                  value={password}
+                  onChange={onChange}
+                />
               </div>
               <div id="Save-pwd">
                 <Link to="/">비밀번호를 잊어버리셨나요?</Link>
