@@ -7,9 +7,11 @@ import * as authApi from "api/auth";
 import { Link } from "react-router-dom";
 import { ReactComponent as Img1 } from "asset/auth_image_1.svg";
 
-import EmailIcon from "@material-ui/icons/Email";
+import ContactsIcon from "@material-ui/icons/Contacts";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
-import ClearIcon from "@material-ui/icons/Clear";
+import PersonIcon from "@material-ui/icons/Person";
+import SchoolIcon from "@material-ui/icons/School";
+import EmailIcon from "@material-ui/icons/Email";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -17,19 +19,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
-`;
-
-const CancelButtonWrapper = styled.div`
-  width: 100%;
-  position: relative;
-`;
-
-const CancelButton = styled(ClearIcon)`
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  right: 0;
-  margin: 30px;
 `;
 
 const Left = styled.div`
@@ -144,7 +133,7 @@ const Right = styled.div`
 const Form = styled.form`
   width: 100%;
   display: flex;
-  height: 40%;
+  height: 60%;
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
@@ -280,10 +269,13 @@ const Signin = ({ setIsSignUp }) => {
 
   const [state, dispatch] = useReducer(reducer, {
     id: "",
-    password: ""
+    password: "",
+    name: "",
+    schoolName: "",
+    email: ""
   });
 
-  const { id, password } = state;
+  const { id, password, name, schoolName, email } = state;
 
   const onChange = e => {
     dispatch(e.target);
@@ -311,10 +303,10 @@ const Signin = ({ setIsSignUp }) => {
         </Left>
         <Right>
           <h1>처음이신가요?</h1>
-          <span>회원가입 후 온라인으로 간편하게 원서접수하세요.</span>
+          <span>회원가입 후 잎새로 간편하게 원서접수하세요.</span>
           <Form onSubmit={onSubmit}>
             <div id="First">
-              <EmailIcon />
+              <ContactsIcon />
               <input
                 type="id"
                 placeholder="아이디"
@@ -333,12 +325,39 @@ const Signin = ({ setIsSignUp }) => {
                 onChange={onChange}
               />
             </div>
-            <div id="Save-pwd">
-              <Link to="/">비밀번호를 잊어버리셨나요?</Link>
+            <div id="Second">
+              <PersonIcon />
+              <input
+                type="name"
+                placeholder="이름"
+                name="name"
+                value={name}
+                onChange={onChange}
+              />
+            </div>
+            <div id="Second">
+              <SchoolIcon />
+              <input
+                type="schoolName"
+                placeholder="학교"
+                name="schoolName"
+                value={schoolName}
+                onChange={onChange}
+              />
+            </div>
+            <div id="Second">
+              <EmailIcon />
+              <input
+                type="email"
+                placeholder="이메일"
+                name="email"
+                value={email}
+                onChange={onChange}
+              />
             </div>
             <div id="btn">
               <button id="Login" type="submit">
-                로그인
+                회원가입
               </button>
               <Spacer />
               <button
@@ -346,7 +365,7 @@ const Signin = ({ setIsSignUp }) => {
                 type="button"
                 onClick={() => setIsSignUp(false)}
               >
-                회원가입
+                취소
               </button>
             </div>
           </Form>

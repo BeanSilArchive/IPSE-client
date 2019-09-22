@@ -7,9 +7,8 @@ import * as authApi from "api/auth";
 import { Link } from "react-router-dom";
 import { ReactComponent as Img1 } from "asset/auth_image_1.svg";
 
-import EmailIcon from "@material-ui/icons/Email";
+import ContactsIcon from "@material-ui/icons/Contacts";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
-import ClearIcon from "@material-ui/icons/Clear";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -17,19 +16,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
-`;
-
-const CancelButtonWrapper = styled.div`
-  width: 100%;
-  position: relative;
-`;
-
-const CancelButton = styled(ClearIcon)`
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  right: 0;
-  margin: 30px;
 `;
 
 const Left = styled.div`
@@ -320,7 +306,7 @@ const Signin = ({ setIsSignUp }) => {
           </span>
           <Form onSubmit={onSubmit}>
             <div id="First">
-              <EmailIcon />
+              <ContactsIcon />
               <input
                 type="id"
                 placeholder="아이디"
