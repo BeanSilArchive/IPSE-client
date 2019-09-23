@@ -4,15 +4,17 @@ import { path } from "./apipath";
 
 export const register = (
   { id, password, name, schoolName, schoolSeq, email } // 회원가입
-) =>
-  axios.post(path + "/api/auth/register", {
+) => {
+  console.log({ id, password, name, schoolName, schoolSeq, email });
+  return axios.post(path + "/api/auth/register", {
     id,
     password,
     name,
-    schoolName,
-    schoolSeq,
+    school_name: schoolName,
+    school_seq: schoolSeq,
     email
   });
+};
 
 export const login = (
   { id, password } // 로그인

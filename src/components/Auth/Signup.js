@@ -291,7 +291,7 @@ const Signin = ({ setIsSignUp }) => {
   const { id, password, name, email } = state;
   const [modal, setModal] = useState(false);
   const [schoolName, setSchoolName] = useState("");
-  const [seq, setSeq] = useState("");
+  const [schoolSeq, setSeq] = useState("");
 
   const onChange = e => {
     dispatch(e.target);
@@ -301,10 +301,10 @@ const Signin = ({ setIsSignUp }) => {
     e.preventDefault();
 
     authApi
-      .login({ id, password })
+      .register({ id, password, name, schoolName, schoolSeq, email })
       .then(result => {
-        localStorage.setItem("ipse-token", result.data.token);
-        window.location.reload();
+        console.log(result);
+        setIsSignUp(false);
       })
       .catch(result => {
         console.log(result);
