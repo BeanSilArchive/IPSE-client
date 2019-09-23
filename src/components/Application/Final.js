@@ -4,8 +4,20 @@ import oc from "open-color";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormGroup from "@material-ui/core/FormGroup";
-import Address from "Modal/Address";
 import { Link } from "react-router-dom";
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  button: {
+    display: 'block',
+    marginTop: theme.spacing(2),
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+}));
 
 const Wrapper = styled.div`
   width: 100%;
@@ -246,6 +258,31 @@ const Animation2 = styled.div`
   }
 `;
 
+const Dropdown = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  align-items: center;
+
+`
+
+
+const SubList = styled.div`
+    width: 30%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5px;
+
+    span {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+`
+
+
 const Animation3 = styled.div`
   ${props =>
     props.scroll
@@ -294,11 +331,12 @@ const Animation4 = styled.div`
 function reducer(state, action) {
   return {
     ...state,
-    [action.name]: action.name
+    [action.name]: action.value
   };
 }
 
 const Final = () => {
+  const classes = useStyles();
   const [state, dispatch] = useReducer(reducer, {
     applicantName: "",
     applicantSex: "",
@@ -353,6 +391,7 @@ const Final = () => {
                 <InputBox>
                   <label>이름</label>
                   <input
+                    disabled
                     placeholder="홍길동"
                     name="applicantName"
                     value={applicantName}
@@ -362,6 +401,7 @@ const Final = () => {
                 <InputBox>
                   <label>성별</label>
                   <input
+                  disabled
                     placeholder={NowDate()}
                     name="applicantSex"
                     onChange={onChange}
@@ -370,6 +410,7 @@ const Final = () => {
                 <InputBox>
                   <label>생년월일</label>
                   <input
+                  disabled
                     placeholder={NowDate()}
                     name="applicantBirthday"
                     onChange={onChange}
@@ -380,6 +421,7 @@ const Final = () => {
                 <InputBox>
                   <label>집전화</label>
                   <input
+                  disabled
                     placeholder="062-649-6806"
                     name="applicantHometel"
                     onChange={onChange}
@@ -388,6 +430,7 @@ const Final = () => {
                 <InputBox>
                   <label>핸드폰</label>
                   <input
+                  disabled
                     placeholder="010-1234-5678"
                     name="applicantPhone"
                     onChange={onChange}
@@ -398,6 +441,7 @@ const Final = () => {
                 <InputBox>
                   <label>주소</label>
                   <input
+                  disabled
                     placeholder="광주광역시 광산구 상무대로 312, 광주소프트웨어마이스터고등학교"
                     name="applicantAddress"
                     onChange={onChange}
@@ -421,6 +465,7 @@ const Final = () => {
             <InputBox>
               <label>이름</label>
               <input
+              disabled
                 placeholder="홍길동"
                 name="guardianName"
                 onChange={onChange}
@@ -431,6 +476,7 @@ const Final = () => {
               <div>
                 <span>지원자 홍길동의</span>
                 <input
+                disabled
                   placeholder="부 / 모 / 조부 / 조모"
                   name="guardianRelation"
                   onChange={onChange}
@@ -442,6 +488,7 @@ const Final = () => {
             <InputBox>
               <label>집전화</label>
               <input
+              disabled
                 placeholder="062-649-6806"
                 name="guardianHomeTel"
                 onChange={onChange}
@@ -450,6 +497,7 @@ const Final = () => {
             <InputBox>
               <label>핸드폰</label>
               <input
+              disabled
                 placeholder="010-1234-5678"
                 name="guardianPhone"
                 onChange={onChange}
@@ -464,6 +512,7 @@ const Final = () => {
             <InputBox>
               <label>이름</label>
               <input
+              disabled
                 placeholder="홍길동"
                 name="teacherName"
                 onChange={onChange}
@@ -472,6 +521,7 @@ const Final = () => {
             <InputBox>
               <label>핸드폰</label>
               <input
+              disabled
                 placeholder="010-1234-5678"
                 name="teacherPhone"
                 onChange={onChange}
@@ -486,6 +536,7 @@ const Final = () => {
             <InputBox>
               <label>중학교</label>
               <input
+              disabled
                 placeholder="광산중학교"
                 name="schoolName"
                 onChange={onChange}
@@ -504,6 +555,7 @@ const Final = () => {
             <InputBox>
               <label>지역명</label>
               <input
+              disabled
                 placeholder="광주광역시 광산구"
                 name="schoolLocation"
                 onChange={onChange}
@@ -512,6 +564,7 @@ const Final = () => {
             <InputBox>
               <label>연락처</label>
               <input
+              disabled
                 placeholder="062-649-6806"
                 name="schoolTel"
                 onChange={onChange}
@@ -527,6 +580,7 @@ const Final = () => {
               <FormControlLabel
                 style={{}}
                 name="end"
+                disabled
                 control={<Checkbox color="primary" />}
                 label="일반전형"
                 labelPlacement="일반전형"
@@ -535,6 +589,7 @@ const Final = () => {
               />
               <FormControlLabel
                 name="end"
+                disabled
                 control={<Checkbox color="primary" />}
                 label="마이스터인재전형"
                 labelPlacement="마이스터인재전형"
@@ -543,6 +598,7 @@ const Final = () => {
               <FormControlLabel
                 id="social"
                 name="end"
+                disabled
                 control={<Checkbox color="primary" />}
                 label="사회통합전형 - 기회균등전형"
                 labelPlacement="사회통합전형 - 기회균등전형"
@@ -552,6 +608,7 @@ const Final = () => {
               <FormControlLabel
                 id="social"
                 name="end"
+                disabled
                 control={<Checkbox color="primary" />}
                 label="사회통합전형 - 사회다양성전형"
                 labelPlacement="사회통합전형 - 사회다양성전형"
@@ -560,6 +617,7 @@ const Final = () => {
               />
               <FormControlLabel
                 name="end"
+                disabled
                 control={<Checkbox color="primary" />}
                 label="특별전형(정원외)"
                 labelPlacement="특별전형(정원외)"
@@ -569,26 +627,75 @@ const Final = () => {
             </Row>
           </FormGroup>
         </WhiteBox>
-        <div
-          id="section06"
-          style={{
-            border: "1px solid black",
-            borderRadius: "5px",
-            marginBottom: "20px"
-          }}
-        >
-          <Link
-            to="/calcgrade"
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-              marginBottom: "20px",
-              marginTop: "20px"
-            }}
-          >
-            다음으로
-          </Link>
+        <h2 id="section4">성적 산출 결과</h2>
+                <WhiteBox id="section4">
+                <Row>
+                  <SubList>
+                    <span style={{marginBottom: `8px`}}>기본 점수</span>
+                    <span style={{marginBottom: `8px`}}>교과 성적</span>
+                    <span style={{marginBottom: `8px`}}>출석 성적</span>
+                    <span style={{marginBottom: `8px`}}>봉사 활동</span>
+                    <span style={{marginBottom: `8px`}}>총점</span>
+                  </SubList>
+                  <Row>
+                  <Dropdown>
+                  
+                  <TextField
+        disabled
+        id="standard-disabled"
+        label="기본 점수"
+        disabled
+        className={classes.textField}
+        margin="normal"
+      />
+      <TextField
+        disabled
+        id="standard-disabled"
+        label="교과 점수"
+        disabled
+        className={classes.textField}
+        margin="normal"
+      />
+      <TextField
+        disabled
+        id="standard-disabled"
+        label="출석 점수"
+        disabled
+        className={classes.textField}
+        margin="normal"
+      />
+      <TextField
+        disabled
+        id="standard-disabled"
+        label="봉사 점수"
+        disabled
+        className={classes.textField}
+        margin="normal"
+      />
+      <TextField
+        disabled
+        id="standard-disabled"
+        label="총 점수"
+        disabled
+        className={classes.textField}
+        margin="normal"
+      />
+                  </Dropdown>
+                  
+                  </Row>
+                  </Row>
+                
+                </WhiteBox>
+                <div id="section06" style={{border: "1px solid black", borderRadius: "5px", marginBottom: "20px"}}>
+          <span onClick={() => {
+            if (window.confirm('최종제출 하시겠습니까?')) {
+              window.location.href="/";
+              alert("제출되었습니다.");
+            }
+            else {
+              return;
+            }
+          }} style={{justifyContent: "center", alignItems: "center", display: "flex", marginBottom: "20px", marginTop: "20px", cursor: "pointer"}}>제출하기</span>
         </div>
       </ContentDiv>
       

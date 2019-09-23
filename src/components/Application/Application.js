@@ -343,6 +343,8 @@ const Application = () => {
     console.log(state);
   };
 
+
+
   return (
     <Wrapper>
       <ContentDiv>
@@ -531,7 +533,6 @@ const Application = () => {
                 control={<Checkbox color="primary" />}
                 label="일반전형"
                 labelPlacement="일반전형"
-                checked={false}
                 style={{ width: `100%` }}
               />
               <FormControlLabel
@@ -547,7 +548,6 @@ const Application = () => {
                 control={<Checkbox color="primary" />}
                 label="사회통합전형 - 기회균등전형"
                 labelPlacement="사회통합전형 - 기회균등전형"
-                checked={false}
                 style={{ width: `100%` }}
               />
               <FormControlLabel
@@ -556,15 +556,14 @@ const Application = () => {
                 control={<Checkbox color="primary" />}
                 label="사회통합전형 - 사회다양성전형"
                 labelPlacement="사회통합전형 - 사회다양성전형"
-                checked={false}
                 style={{ width: `100%` }}
               />
               <FormControlLabel
                 name="end"
+                type="radio"
                 control={<Checkbox color="primary" />}
                 label="특별전형(정원외)"
                 labelPlacement="특별전형(정원외)"
-                checked={false}
                 style={{ width: `100%` }}
               />
             </Row>
