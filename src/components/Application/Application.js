@@ -4,8 +4,8 @@ import oc from "open-color";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormGroup from "@material-ui/core/FormGroup";
-import Address from 'Modal/Address';
-import { Link } from 'react-router-dom';
+import Address from "Modal/Address";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -291,7 +291,6 @@ const Animation4 = styled.div`
   }
 `;
 
-
 const Application = () => {
   const [modal, setModal] = useState(false);
   const [state, dispatch] = useReducer(reducer, {
@@ -313,13 +312,12 @@ const Application = () => {
     schoolTel: ""
   });
 
-
-function reducer(state, action) {
-  return {
-    ...state,
-    [action.name]: action.name
-  };
-}
+  function reducer(state, action) {
+    return {
+      ...state,
+      [action.name]: action.value
+    };
+  }
 
   const {
     applicantName,
@@ -342,7 +340,7 @@ function reducer(state, action) {
 
   const onChange = e => {
     dispatch(e.target);
-    setModal(true);
+    console.log(state);
   };
 
   return (
@@ -403,15 +401,8 @@ function reducer(state, action) {
                     placeholder="광주광역시 광산구 상무대로 312, 광주소프트웨어마이스터고등학교"
                     name="applicantAddress"
                     onChange={onChange}
-                
                   />
-                  {modal ? (
-                <Address
-                  setModal={setModal}
-                />
-              ) : (
-                ``
-              )}
+                  {modal ? <Address setModal={setModal} /> : ``}
                 </InputBox>
               </Row>
             </Flex>
@@ -579,11 +570,29 @@ function reducer(state, action) {
             </Row>
           </FormGroup>
         </WhiteBox>
-        <div id="section06" style={{border: "1px solid black", borderRadius: "5px", marginBottom: "20px"}}>
-          <Link to="/calcgrade" style={{justifyContent: "center", alignItems: "center", display: "flex", marginBottom: "20px", marginTop: "20px"}}>다음으로</Link>
+        <div
+          id="section06"
+          style={{
+            border: "1px solid black",
+            borderRadius: "5px",
+            marginBottom: "20px"
+          }}
+        >
+          <Link
+            to="/calcgrade"
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              display: "flex",
+              marginBottom: "20px",
+              marginTop: "20px"
+            }}
+          >
+            다음으로
+          </Link>
         </div>
-
-      </ContentDiv>
+      </ContentDiv>
+      
     </Wrapper>
   );
 };

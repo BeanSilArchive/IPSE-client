@@ -4,8 +4,8 @@ import oc from "open-color";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormGroup from "@material-ui/core/FormGroup";
-import Address from 'Modal/Address';
-import { Link } from 'react-router-dom';
+import Address from "Modal/Address";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -299,53 +299,51 @@ function reducer(state, action) {
 }
 
 const Final = () => {
-    const [state, dispatch] = useReducer(reducer, {
-      applicantName: "",
-      applicantSex: "",
-      applicantBirthday: "",
-      applicantHometel: "",
-      applicantPhone: "",
-      applicantAddress: "",
-      guardianName: "",
-      guardianRelation: "",
-      guardianHomeTel: "",
-      guardianPhone: "",
-      teacherName: "",
-      teacherPhone: "",
-      schoolName: "",
-      schoolDay: "",
-      schoolLocation: "",
-      schoolTel: ""
-    });
-  
-    const {
-      applicantName,
-      applicantSex,
-      applicantBirthday,
-      applicantHometel,
-      applicantPhone,
-      applicantAddress,
-      guardianName,
-      guardianRelation,
-      guardianHomeTel,
-      guardianPhone,
-      teacherName,
-      teacherPhone,
-      schoolName,
-      schoolDay,
-      schoolLocation,
-      schoolTel
-    } = state;
-  
+  const [state, dispatch] = useReducer(reducer, {
+    applicantName: "",
+    applicantSex: "",
+    applicantBirthday: "",
+    applicantHometel: "",
+    applicantPhone: "",
+    applicantAddress: "",
+    guardianName: "",
+    guardianRelation: "",
+    guardianHomeTel: "",
+    guardianPhone: "",
+    teacherName: "",
+    teacherPhone: "",
+    schoolName: "",
+    schoolDay: "",
+    schoolLocation: "",
+    schoolTel: ""
+  });
 
-    const onChange = e => {
-      dispatch(e.target);
-      e.preventDefault();
-    };
-    
+  const {
+    applicantName,
+    applicantSex,
+    applicantBirthday,
+    applicantHometel,
+    applicantPhone,
+    applicantAddress,
+    guardianName,
+    guardianRelation,
+    guardianHomeTel,
+    guardianPhone,
+    teacherName,
+    teacherPhone,
+    schoolName,
+    schoolDay,
+    schoolLocation,
+    schoolTel
+  } = state;
 
-    return (
-<Wrapper>
+  const onChange = e => {
+    dispatch(e.target);
+    e.preventDefault();
+  };
+
+  return (
+    <Wrapper>
       <ContentDiv>
         <h2 id="section1">인적 사항 - 지원자</h2>
         <WhiteBox id="section1">
@@ -403,7 +401,6 @@ const Final = () => {
                     placeholder="광주광역시 광산구 상무대로 312, 광주소프트웨어마이스터고등학교"
                     name="applicantAddress"
                     onChange={onChange}
-                
                   />
                 </InputBox>
               </Row>
@@ -572,13 +569,31 @@ const Final = () => {
             </Row>
           </FormGroup>
         </WhiteBox>
-        <div id="section06" style={{border: "1px solid black", borderRadius: "5px", marginBottom: "20px"}}>
-          <Link to="/calcgrade" style={{justifyContent: "center", alignItems: "center", display: "flex", marginBottom: "20px", marginTop: "20px"}}>다음으로</Link>
+        <div
+          id="section06"
+          style={{
+            border: "1px solid black",
+            borderRadius: "5px",
+            marginBottom: "20px"
+          }}
+        >
+          <Link
+            to="/calcgrade"
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              display: "flex",
+              marginBottom: "20px",
+              marginTop: "20px"
+            }}
+          >
+            다음으로
+          </Link>
         </div>
-
-      </ContentDiv>
+      </ContentDiv>
+      
     </Wrapper>
-    )
-}
+  );
+};
 
-export default Final
+export default Final;
