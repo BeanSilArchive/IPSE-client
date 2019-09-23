@@ -301,7 +301,7 @@ const Signin = ({ setIsSignUp }) => {
     e.preventDefault();
 
     authApi
-      .login({ id, password })
+      .register({ id, password, schoolName, name, email })
       .then(result => {
         localStorage.setItem("ipse-token", result.data.token);
         window.location.reload();
