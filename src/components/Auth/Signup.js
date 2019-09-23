@@ -266,7 +266,6 @@ const Signin = ({ setIsSignUp }) => {
       [action.name]: action.value
     };
   }
-
   const [state, dispatch] = useReducer(reducer, {
     id: "",
     password: "",
