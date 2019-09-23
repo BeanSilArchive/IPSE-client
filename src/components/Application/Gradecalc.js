@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -50,6 +51,51 @@ const ContentDiv = styled.div`
   h2 {
       margin: 0px;
     }
+
+  a {
+    color : black;
+    text-decoration: none;
+  }
+
+    #section1 {
+    opacity: 1;
+    animation-name: FadeIn;
+    animation-timing-function: ease-in;
+    animation-duration: 0.3s;
+  }
+
+  #section2 {
+    opacity: 1;
+    animation-name: FadeIn;
+    animation-timing-function: ease-in;
+    animation-duration: 0.6s;
+  }
+
+  #section3 {
+    opacity: 1;
+    animation-name: FadeIn;
+    animation-timing-function: ease-in;
+    animation-duration: 0.9s;
+  }
+
+  #section4 {
+    opacity: 1;
+    animation-name: FadeIn;
+    animation-timing-function: ease-in;
+    animation-duration: 1.2s;
+  }
+
+  @keyframes FadeIn {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 
 const WhiteBox = styled.div`
@@ -178,8 +224,8 @@ const Gradecalc = () => {
     return (
         <Wrapper>
             <ContentDiv>
-                <h2>교과 성적 산출 - 자유 학기제 학기는 입력하지 마세요.</h2>
-                <WhiteBox>
+                <h2 id="section1">교과 성적 산출 - 자유 학기제 학기는 입력하지 마세요.</h2>
+                <WhiteBox id="section1">
                     
                     <Row>
                         <SubList>
@@ -1367,8 +1413,8 @@ const Gradecalc = () => {
                         </Row>
                     </Row>
                 </WhiteBox>
-                <h2>출결 상황</h2>
-                <WhiteBox>
+                <h2 id="section2">출결 상황</h2>
+                <WhiteBox id="section2">
                   <Row>
                   <SubList>
                     <span>1학년</span>
@@ -1471,8 +1517,8 @@ const Gradecalc = () => {
                   </Row>
                   </Row>
                 </WhiteBox>
-                <h2>봉사 시간</h2>
-                <WhiteBox>
+                <h2 id="section3">봉사 시간</h2>
+                <WhiteBox id="section3">
                 <Row>
                   <SubList>
                     <span>1학년</span>
@@ -1507,8 +1553,8 @@ const Gradecalc = () => {
                   </Row>
                   </Row>
                 </WhiteBox>
-                <h2>성적 산출 결과</h2>
-                <WhiteBox>
+                <h2 id="section4">성적 산출 결과</h2>
+                <WhiteBox id="section4">
                 <Row>
                   <SubList>
                     <span style={{marginBottom: `8px`}}>기본 점수</span>
@@ -1566,6 +1612,9 @@ const Gradecalc = () => {
                   </Row>
                 
                 </WhiteBox>
+                <div id="section06" style={{border: "1px solid black", borderRadius: "5px", marginBottom: "20px"}}>
+          <Link to="/final" style={{justifyContent: "center", alignItems: "center", display: "flex", marginBottom: "20px", marginTop: "20px"}}>다음으로</Link>
+        </div>
             </ContentDiv>
         </Wrapper>
     );
