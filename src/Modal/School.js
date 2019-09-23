@@ -10,16 +10,36 @@ import InputBase from "@material-ui/core/InputBase";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 
-const Wrapper = styled.div`
+const Positioner = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+`;
+
+const Wrapper = styled.div`
+  width: 1000px;
+  height: 800px;
+  margin: auto;
+  background-color: white;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  padding: 30px;
 
   label {
     color: black;
   }
+`;
+
+const InputWrapper = styled.div`
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 `;
 
 const Result = styled.div`
@@ -30,28 +50,29 @@ const Result = styled.div`
   tbody {
     display: flex;
     width: 100%;
-    th {
+    #school {
       flex: 1;
+    }
+    #address {
+      flex: 2;
     }
   }
 `;
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: "2px 4px",
     display: "flex",
     alignItems: "center",
-    marginTop: `10px`,
-    marginLeft: `10px`,
-    marginRight: `10px`,
-    width: `98.5%`
+    width: `100%`,
+    height: `50px`
   },
   input: {
     marginLeft: theme.spacing(1),
-    flex: 1
+    flex: 1,
+    height: `30px`
   },
   iconButton: {
-    padding: 10
+    paddingTop: `35px`
   },
   divider: {
     height: 28,
@@ -59,7 +80,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const School = () => {
+const School = ({ setModal, setSchoolName, setSeq }) => {
   const classes = useStyles();
   function reducer(state, action) {
     return {
@@ -78,9 +99,9 @@ const School = () => {
 
   const onChange = e => {
     dispatch(e.target);
-    console.log("====================================");
-    console.log(searchText);
-    console.log("====================================");
+    // console.log("====================================");
+    // console.log(searchText);
+    // console.log("====================================");
   };
 
   const Onsubmit = e => {
@@ -88,9 +109,9 @@ const School = () => {
     Appli.schoolSearch({ searchText })
       .then(result => {
         SetList(result.data.list);
-        console.log("====================================");
-        console.log(List);
-        console.log("====================================");
+        // console.log("====================================");
+        // console.log(List);
+        // console.log("====================================");
       })
       .catch(result => {
         console.log(result);
@@ -98,43 +119,50 @@ const School = () => {
   };
 
   return (
-    <Wrapper>
-      <Paper className={classes.root}>
-        <InputBase
-          className={classes.input}
-          placeholder="Search Google Maps"
-          name="searchText"
-          inputProps={{ "aria-label": "search google maps" }}
-          onChange={onChange}
-        />
-        <IconButton
-          className={classes.iconButton}
-          aria-label="search"
-          onClick={Onsubmit}
-        >
-          <SearchIcon />
-        </IconButton>
-      </Paper>
-      <Result>
-        <tbody style={{ marginTop: `20px` }}>
-          <th>학교이름</th>
-          <th>주소</th>
-        </tbody>
-        {List.map((item, i) => {
-          if (List === null && List === undefined) {
-            return false;
-          } else {
-            return (
-              <SchoolItem
-                schoolName={item.school_name}
-                address={item.address}
-                seq={item.seq}
-              />
-            );
-          }
-        })}
-      </Result>
-    </Wrapper>
+    <Positioner>
+      <Wrapper>
+        <form onSubmit={Onsubmit}>
+          <Paper className={classes.root}>
+            <InputBase
+              className={classes.input}
+              placeholder="학교 이름으로 검색해 보세요"
+              name="searchText"
+              inputProps={{ "aria-label": "search google maps" }}
+              onChange={onChange}
+            />
+            <IconButton
+              className={classes.iconButton}
+              aria-label="search"
+              onClick={Onsubmit}
+            >
+              <SearchIcon />
+            </IconButton>
+          </Paper>
+        </form>
+        <Result>
+          <tbody style={{ marginTop: `20px` }}>
+            <th id="school">학교이름</th>
+            <th id="address">주소</th>
+          </tbody>
+          {List.map((item, i) => {
+            if (List === null && List === undefined) {
+              return false;
+            } else {
+              return (
+                <SchoolItem
+                  schoolName={item.school_name}
+                  address={item.address}
+                  seq={item.seq}
+                  setModal={setModal}
+                  setSchoolName={setSchoolName}
+                  setSeq={setSeq}
+                />
+              );
+            }
+          })}
+        </Result>
+      </Wrapper>
+    </Positioner>
   );
 };
 

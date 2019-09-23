@@ -1,10 +1,11 @@
-import React, { useReducer } from "react";
+import React, { useState, useReducer } from "react";
 import styled from "styled-components";
 import oc from "open-color";
 
 import * as authApi from "api/auth";
 
-import { Link } from "react-router-dom";
+import SchoolModal from "Modal/School";
+
 import { ReactComponent as Img1 } from "asset/auth_image_1.svg";
 
 import ContactsIcon from "@material-ui/icons/Contacts";
@@ -272,22 +273,25 @@ const Spacer = styled.div`
   flex: 1;
 `;
 
+function reducer(state, action) {
+  return {
+    ...state,
+    [action.name]: action.value
+  };
+}
+
 const Signin = ({ setIsSignUp }) => {
-  function reducer(state, action) {
-    return {
-      ...state,
-      [action.name]: action.value
-    };
-  }
   const [state, dispatch] = useReducer(reducer, {
     id: "",
     password: "",
     name: "",
-    schoolName: "",
     email: ""
   });
 
-  const { id, password, name, schoolName, email } = state;
+  const { id, password, name, email } = state;
+  const [modal, setModal] = useState(false);
+  const [schoolName, setSchoolName] = useState("");
+  const [seq, setSeq] = useState("");
 
   const onChange = e => {
     dispatch(e.target);
@@ -357,7 +361,18 @@ const Signin = ({ setIsSignUp }) => {
                 value={schoolName}
                 onChange={onChange}
               />
-              <SchoolButton>학교찾기</SchoolButton>
+              <SchoolButton onClick={() => setModal(true)}>
+                학교찾기
+              </SchoolButton>
+              {modal ? (
+                <SchoolModal
+                  setModal={setModal}
+                  setSchoolName={setSchoolName}
+                  setSeq={setSeq}
+                />
+              ) : (
+                ``
+              )}
             </div>
             <div id="Second">
               <EmailIcon />
