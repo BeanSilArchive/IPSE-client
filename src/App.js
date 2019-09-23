@@ -2,7 +2,7 @@ import React from "react";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router-dom";
 
-import { Home, Application, Grade, Question } from "pages";
+import { Home, Application, Grade, Question, Final } from "pages";
 import Address from 'Modal/Address';
 const history = createBrowserHistory();
 
@@ -14,6 +14,7 @@ const App = () => {
         <Route path="/calcgrade" component={Grade} />
         <Route path="/question" component={Question} />
         <Route path="/address" component={Address} />
+        <Route path="/final" component={Final} />
         <Route path="/" component={Home} />
       </Switch>
     </Router>

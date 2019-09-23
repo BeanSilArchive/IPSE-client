@@ -291,29 +291,6 @@ const Animation4 = styled.div`
   }
 `;
 
-
-const Application = () => {
-  const [modal, setModal] = useState(false);
-  const [state, dispatch] = useReducer(reducer, {
-    applicantName: "",
-    applicantSex: "",
-    applicantBirthday: "",
-    applicantHometel: "",
-    applicantPhone: "",
-    applicantAddress: "",
-    guardianName: "",
-    guardianRelation: "",
-    guardianHomeTel: "",
-    guardianPhone: "",
-    teacherName: "",
-    teacherPhone: "",
-    schoolName: "",
-    schoolDay: "",
-    schoolLocation: "",
-    schoolTel: ""
-  });
-
-
 function reducer(state, action) {
   return {
     ...state,
@@ -321,32 +298,54 @@ function reducer(state, action) {
   };
 }
 
-  const {
-    applicantName,
-    applicantSex,
-    applicantBirthday,
-    applicantHometel,
-    applicantPhone,
-    applicantAddress,
-    guardianName,
-    guardianRelation,
-    guardianHomeTel,
-    guardianPhone,
-    teacherName,
-    teacherPhone,
-    schoolName,
-    schoolDay,
-    schoolLocation,
-    schoolTel
-  } = state;
+const Final = () => {
+    const [state, dispatch] = useReducer(reducer, {
+      applicantName: "",
+      applicantSex: "",
+      applicantBirthday: "",
+      applicantHometel: "",
+      applicantPhone: "",
+      applicantAddress: "",
+      guardianName: "",
+      guardianRelation: "",
+      guardianHomeTel: "",
+      guardianPhone: "",
+      teacherName: "",
+      teacherPhone: "",
+      schoolName: "",
+      schoolDay: "",
+      schoolLocation: "",
+      schoolTel: ""
+    });
+  
+    const {
+      applicantName,
+      applicantSex,
+      applicantBirthday,
+      applicantHometel,
+      applicantPhone,
+      applicantAddress,
+      guardianName,
+      guardianRelation,
+      guardianHomeTel,
+      guardianPhone,
+      teacherName,
+      teacherPhone,
+      schoolName,
+      schoolDay,
+      schoolLocation,
+      schoolTel
+    } = state;
+  
 
-  const onChange = e => {
-    dispatch(e.target);
-    setModal(true);
-  };
+    const onChange = e => {
+      dispatch(e.target);
+      e.preventDefault();
+    };
+    
 
-  return (
-    <Wrapper>
+    return (
+<Wrapper>
       <ContentDiv>
         <h2 id="section1">인적 사항 - 지원자</h2>
         <WhiteBox id="section1">
@@ -358,6 +357,7 @@ function reducer(state, action) {
                   <input
                     placeholder="홍길동"
                     name="applicantName"
+                    value={applicantName}
                     onChange={onChange}
                   />
                 </InputBox>
@@ -405,13 +405,6 @@ function reducer(state, action) {
                     onChange={onChange}
                 
                   />
-                  {modal ? (
-                <Address
-                  setModal={setModal}
-                />
-              ) : (
-                ``
-              )}
                 </InputBox>
               </Row>
             </Flex>
@@ -585,7 +578,7 @@ function reducer(state, action) {
 
       </ContentDiv>
     </Wrapper>
-  );
-};
+    )
+}
 
-export default Application;
+export default Final
