@@ -1,6 +1,9 @@
 import React, { useReducer, useState } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import * as Appli from "api/application";
+
+import SchoolItem from "./SchoolItem";
+
 import SearchIcon from "@material-ui/icons/Search";
 import IconButton from "@material-ui/core/IconButton";
 import InputBase from "@material-ui/core/InputBase";
@@ -15,24 +18,23 @@ const Wrapper = styled.div`
   box-sizing: border-box;
 
   label {
-      color: black;
+    color: black;
   }
-
 `;
 
 const Result = styled.div`
-    margin-right: 20px;
-    margin-left: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  width: 100%;
+
+  tbody {
+    display: flex;
     width: 100%;
-    
-    tbody {
-        display: flex;
-        width: 100%;
-        th {
-            flex: 1;
-        }
+    th {
+      flex: 1;
     }
-`
+  }
+`;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,84 +59,83 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
 const School = () => {
   const classes = useStyles();
-    function reducer(state, action) {
-        return {
-          ...state,
-          [action.name]: action.value
-        };
-      }
-    
-      const [state, dispatch] = useReducer(reducer, {
-        searchText: ''
+  function reducer(state, action) {
+    return {
+      ...state,
+      [action.name]: action.value
+    };
+  }
+
+  const [state, dispatch] = useReducer(reducer, {
+    searchText: ""
+  });
+
+  const { searchText } = state;
+
+  const [List, SetList] = useState([{}]);
+
+  const onChange = e => {
+    dispatch(e.target);
+    console.log("====================================");
+    console.log(searchText);
+    console.log("====================================");
+  };
+
+  const Onsubmit = e => {
+    e.preventDefault();
+    Appli.schoolSearch({ searchText })
+      .then(result => {
+        SetList(result.data.list);
+        console.log("====================================");
+        console.log(List);
+        console.log("====================================");
+      })
+      .catch(result => {
+        console.log(result);
       });
-    
-      const { searchText } = state;
+  };
 
-      const [List, SetList] = useState([{
-
-      }]);
-    
-      const onChange = e => {
-        dispatch(e.target);
-        console.log('====================================');
-        console.log(searchText);
-        console.log('====================================');
-      };
-
-       const Onsubmit = e => {
-        e.preventDefault();
-        Appli
-        .schoolSearch({ searchText })
-        .then(result => {
-          SetList(result.data.list);
-          console.log('====================================');
-          console.log(List);
-          console.log('====================================');
-        })
-        .catch(result => {
-          console.log(result);
-        });
-       }
-
-    return (
-        <Wrapper>
-            <Paper className={classes.root}>
-      <InputBase
-        className={classes.input}
-        placeholder="Search Google Maps"
-        name="searchText"
-        inputProps={{ "aria-label": "search google maps" }}
-        onChange={onChange}
-      />
-      <IconButton className={classes.iconButton} aria-label="search" onClick={Onsubmit}>
-        <SearchIcon
-         
-         />
-      </IconButton>
-    </Paper>
-            <Result>
-                <tbody style={{marginTop: `20px`}}>
-                    <th>학교이름</th>
-                    <th>주소</th>
-                </tbody>
-                {List.map((item, i) => {
-                  if ( List === null && List === undefined) {
-                    return false;
-                  }else {
-                    return (
-                      <tbody style={{marginTop: `20px`}}>
-                  <th>{item.school_name}</th>
-                  <th>{item.address}</th>
-                </tbody>
-                    );
-                  }
-                })}
-            </Result>
-        </Wrapper>
-    )
-}
+  return (
+    <Wrapper>
+      <Paper className={classes.root}>
+        <InputBase
+          className={classes.input}
+          placeholder="Search Google Maps"
+          name="searchText"
+          inputProps={{ "aria-label": "search google maps" }}
+          onChange={onChange}
+        />
+        <IconButton
+          className={classes.iconButton}
+          aria-label="search"
+          onClick={Onsubmit}
+        >
+          <SearchIcon />
+        </IconButton>
+      </Paper>
+      <Result>
+        <tbody style={{ marginTop: `20px` }}>
+          <th>학교이름</th>
+          <th>주소</th>
+        </tbody>
+        {List.map((item, i) => {
+          if (List === null && List === undefined) {
+            return false;
+          } else {
+            return (
+              <SchoolItem
+                schoolName={item.school_name}
+                address={item.address}
+                seq={item.seq}
+              />
+            );
+          }
+        })}
+      </Result>
+    </Wrapper>
+  );
+};
 
 export default School;

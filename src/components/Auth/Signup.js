@@ -255,6 +255,19 @@ const Form = styled.form`
   }
 `;
 
+const SchoolButton = styled.button`
+  border: none;
+  width: 120px;
+  height: 40px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  background-color: ${oc.gray[8]};
+  font-size: 1rem;
+`;
+
 const Spacer = styled.div`
   flex: 1;
 `;
@@ -337,12 +350,14 @@ const Signin = ({ setIsSignUp }) => {
             <div id="Second">
               <SchoolIcon />
               <input
+                style={{ pointerEvents: `none` }}
                 type="schoolName"
                 placeholder="학교"
                 name="schoolName"
                 value={schoolName}
                 onChange={onChange}
               />
+              <SchoolButton>학교찾기</SchoolButton>
             </div>
             <div id="Second">
               <EmailIcon />
