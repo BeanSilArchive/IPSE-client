@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import {Link} from 'react-router-dom';
 import oc from "open-color";
 
 import AuthContainer from "containers/AuthContainer";
-
+import Download from 'asset/2020학년도입학전형요강(최종).pdf';
 import AuthContextProvider, { useStateValue } from "context/AuthContext";
 
 const Positioner = styled.div`
@@ -27,7 +28,9 @@ const ContentDiv = styled.div`
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
-  span {
+  a, span {
+    text-decoration: none;
+    color: black;
     margin: 0 15px;
     font-size: 1.05rem;
   }
@@ -129,9 +132,9 @@ const Header = () => {
         <ContentDiv>
           <h1 style={{ margin: `15px`, fontWeight: `400` }}>잎새</h1>
           <Spacer />
-          <span>원서접수</span>
-          <span>안내사항</span>
-          <span>Q&A</span>
+          <Link to="/application">원서접수</Link>
+          <a href={Download}>안내사항</a>
+          <span onClick={() => alert("아직 미구현 된 기능입니다.")} style={{cursor: `pointer`}}>Q&A</span>
           {returnLoginButton()}
         </ContentDiv>
       </Positioner>

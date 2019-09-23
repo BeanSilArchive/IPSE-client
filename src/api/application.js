@@ -5,7 +5,7 @@ import { path } from "./apipath";
 export const schoolSearch = ({
   searchText
 }) =>
-  axios.get(path + "/api/api/application/searchSchoolList?gubun=&searchText=" + searchText);
+  axios.get(path + "/api/application/searchSchoolList?searchText=" + searchText);
    
 
 export const applicantInput = ({ 
