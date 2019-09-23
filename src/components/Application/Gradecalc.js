@@ -6,9 +6,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
-
-
+import TextField from '@material-ui/core/TextField';
+import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -57,10 +56,9 @@ const WhiteBox = styled.div`
     background-color: white;
     border-radius: 5px;
     display: flex;
-    justify-content: center;
     flex-direction: column;
     box-shadow: 0px 0px 5px rgba(0,0,0, 0.3);
-    padding: 20px 20px 0px 20px;
+    padding: 20px 20px 20px 20px;
     margin-bottom: 20px;
     margin-top: 20px;
     align-items: center;
@@ -77,7 +75,7 @@ const Dropdown = styled.div`
 `
 
 const SubList = styled.div`
-    width: 20%;
+    width: 30%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -162,8 +160,13 @@ const Gradecalc = () => {
           HoI: '',
           HoE: '',
           HoT: '',   
-  });
 
+          DefaultGrade: 0,
+          SubjectGrade: 0,
+          AttenGrade: 30,
+          VolunteerGrade: 0,
+          TotalGrade: 0
+  });
 
   function handleChange(event) {
     setValues(oldValues => ({
@@ -172,11 +175,10 @@ const Gradecalc = () => {
     }));
   }
  
-
     return (
         <Wrapper>
             <ContentDiv>
-                <h2>교과 성적 산출</h2>
+                <h2>교과 성적 산출 - 자유 학기제 학기는 입력하지 마세요.</h2>
                 <WhiteBox>
                     
                     <Row>
@@ -196,27 +198,6 @@ const Gradecalc = () => {
                         <Row>
                             <Dropdown>
                             <FormControl className={classes.formControl} style={{marginLeft: `20px`}}>
-                        <InputLabel htmlFor="age-auto-width">성취도 등급</InputLabel>
-                            <Select
-                              value={values.OoK}
-                              onChange={handleChange}
-                              inputProps={{
-                                name: 'OoK',
-                                id: 'age-auto-width',
-                              }}
-                              autoWidth
-                            >
-                            <MenuItem value="">
-                              <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={5}>A</MenuItem>
-                            <MenuItem value={4}>B</MenuItem>
-                            <MenuItem value={3}>C</MenuItem>
-                            <MenuItem value={2}>D</MenuItem>
-                            <MenuItem value={1}>E</MenuItem>
-                            </Select>
-                        </FormControl>
-                            <FormControl>
                         <InputLabel htmlFor="age-auto-width">성취도 등급</InputLabel>
                             <Select
                               value={values.OoK}
@@ -383,29 +364,29 @@ const Gradecalc = () => {
                             <MenuItem value={2}>D</MenuItem>
                             <MenuItem value={1}>E</MenuItem>
                             </Select>
-                        </FormControl>           
-                        <FormControl className={classes.formControl} style={{marginLeft: `20px`}}>
-                        <InputLabel htmlFor="age-auto-width">성취도 등급</InputLabel>
-                            <Select
-                              value={values.OoP}
-                              onChange={handleChange}
-                              inputProps={{
-                                name: 'OoP',
-                                id: 'age-auto-width',
-                              }}
-                              autoWidth
-                            >
-                            <MenuItem value="">
-                              <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={5}>A</MenuItem>
-                            <MenuItem value={4}>B</MenuItem>
-                            <MenuItem value={3}>C</MenuItem>
-                            <MenuItem value={2}>D</MenuItem>
-                            <MenuItem value={1}>E</MenuItem>
+                        </FormControl>         
+                            <FormControl className={classes.formControl} style={{marginLeft: `20px`}}>
+                              <InputLabel htmlFor="age-auto-width">성취도 등급</InputLabel>
+                                <Select
+                                  value={values.OoP}
+                                  onChange={handleChange}
+                                  inputProps={{
+                                    name: 'OoP',
+                                    id: 'age-auto-width',
+                                  }}
+                                  autoWidth
+                                >
+                              <MenuItem value="">
+                                <em>None</em>
+                              </MenuItem>
+                              <MenuItem value={5}>A</MenuItem>
+                              <MenuItem value={4}>B</MenuItem>
+                              <MenuItem value={3}>C</MenuItem>
+                              <MenuItem value={2}>D</MenuItem>
+                              <MenuItem value={1}>E</MenuItem>
                             </Select>
                         </FormControl>
-                        <FormControl className={classes.formControl} style={{marginLeft: `20px`}}>
+                            <FormControl className={classes.formControl} style={{marginLeft: `20px`}}>
                         <InputLabel htmlFor="age-auto-width">성취도 등급</InputLabel>
                             <Select
                               value={values.OoR}
@@ -426,7 +407,7 @@ const Gradecalc = () => {
                             <MenuItem value={1}>E</MenuItem>
                             </Select>
                         </FormControl>
-                        <FormControl className={classes.formControl} style={{marginLeft: `20px`}}>
+                            <FormControl className={classes.formControl} style={{marginLeft: `20px`}}>
                         <InputLabel htmlFor="age-auto-width">성취도 등급</InputLabel>
                             <Select
                               value={values.OoU}
@@ -452,10 +433,10 @@ const Gradecalc = () => {
                             <FormControl className={classes.formControl} style={{marginLeft: `20px`}}>
                         <InputLabel htmlFor="age-auto-width">성취도 등급</InputLabel>
                             <Select
-                              value={values.OoK}
+                              value={values.OtK}
                               onChange={handleChange}
                               inputProps={{
-                                name: 'OoK',
+                                name: 'OtK',
                                 id: 'age-auto-width',
                               }}
                               autoWidth
@@ -616,7 +597,7 @@ const Gradecalc = () => {
                             <MenuItem value={2}>D</MenuItem>
                             <MenuItem value={1}>E</MenuItem>
                             </Select>
-                        </FormControl>           
+                        </FormControl>
                         <FormControl className={classes.formControl} style={{marginLeft: `20px`}}>
                         <InputLabel htmlFor="age-auto-width">성취도 등급</InputLabel>
                             <Select
@@ -850,7 +831,7 @@ const Gradecalc = () => {
                             <MenuItem value={2}>D</MenuItem>
                             <MenuItem value={1}>E</MenuItem>
                             </Select>
-                        </FormControl>           
+                        </FormControl>
                         <FormControl className={classes.formControl} style={{marginLeft: `20px`}}>
                         <InputLabel htmlFor="age-auto-width">성취도 등급</InputLabel>
                             <Select
@@ -1084,7 +1065,7 @@ const Gradecalc = () => {
                             <MenuItem value={2}>D</MenuItem>
                             <MenuItem value={1}>E</MenuItem>
                             </Select>
-                        </FormControl>           
+                        </FormControl>
                         <FormControl className={classes.formControl} style={{marginLeft: `20px`}}>
                         <InputLabel htmlFor="age-auto-width">성취도 등급</InputLabel>
                             <Select
@@ -1318,7 +1299,7 @@ const Gradecalc = () => {
                             <MenuItem value={2}>D</MenuItem>
                             <MenuItem value={1}>E</MenuItem>
                             </Select>
-                        </FormControl>           
+                        </FormControl>
                         <FormControl className={classes.formControl} style={{marginLeft: `20px`}}>
                         <InputLabel htmlFor="age-auto-width">성취도 등급</InputLabel>
                             <Select
@@ -1343,10 +1324,10 @@ const Gradecalc = () => {
                         <FormControl className={classes.formControl} style={{marginLeft: `20px`}}>
                         <InputLabel htmlFor="age-auto-width">성취도 등급</InputLabel>
                             <Select
-                              value={values.TtR}
+                              value={values.HoR}
                               onChange={handleChange}
                               inputProps={{
-                                name: 'TtR',
+                                name: 'HoR',
                                 id: 'age-auto-width',
                               }}
                               autoWidth
@@ -1385,6 +1366,205 @@ const Gradecalc = () => {
                     </Dropdown>
                         </Row>
                     </Row>
+                </WhiteBox>
+                <h2>출결 상황</h2>
+                <WhiteBox>
+                  <Row>
+                  <SubList>
+                    <span>1학년</span>
+                    <span>2학년</span>
+                    <span>3학년</span>
+                  </SubList>
+                  <Row>
+                  <Dropdown>
+                  <TextField
+                    style={{marginRight: `20px`, marginBottom: `10px`}}
+                    id="standard-dense"
+                    label="미인정 결석"
+                    className={clsx(classes.textField, classes.dense)}
+                    margin="dense"
+                  />
+                  <TextField
+                    style={{marginRight: `20px`, marginBottom: `10px`}}
+                    id="standard-dense"
+                    label="미인정 결석"
+                    className={clsx(classes.textField, classes.dense)}
+                    margin="dense"
+                  />
+                  <TextField
+                    style={{marginRight: `20px`}}
+                    id="standard-dense"
+                    label="미인정 결석"
+                    className={clsx(classes.textField, classes.dense)}
+                    margin="dense"
+                  />
+                  </Dropdown>
+                  <Dropdown>
+                  <TextField
+                    style={{marginRight: `20px`, marginBottom: `10px`}}
+                    id="standard-dense"
+                    label="미인정 지각"
+                    className={clsx(classes.textField, classes.dense)}
+                    margin="dense"
+                  />
+                  <TextField
+                    style={{marginRight: `20px`, marginBottom: `10px`}}
+                    id="standard-dense"
+                    label="미인정 지각"
+                    className={clsx(classes.textField, classes.dense)}
+                    margin="dense"
+                  />
+                  <TextField
+                    style={{marginRight: `20px`}}
+                    id="standard-dense"
+                    label="미인정 지각"
+                    className={clsx(classes.textField, classes.dense)}
+                    margin="dense"
+                  />
+                  </Dropdown>
+                  <Dropdown>
+                  <TextField
+                    style={{marginRight: `20px`, marginBottom: `10px`}}
+                    id="standard-dense"
+                    label="미인정 조퇴"
+                    className={clsx(classes.textField, classes.dense)}
+                    margin="dense"
+                  />
+                  <TextField
+                    style={{marginRight: `20px`, marginBottom: `10px`}}
+                    id="standard-dense"
+                    label="미인정 조퇴"
+                    className={clsx(classes.textField, classes.dense)}
+                    margin="dense"
+                  />
+                  <TextField
+                    style={{marginRight: `20px`}}
+                    id="standard-dense"
+                    label="미인정 조퇴"
+                    className={clsx(classes.textField, classes.dense)}
+                    margin="dense"
+                  />
+                  </Dropdown>
+                  <Dropdown>
+                  <TextField
+                    style={{marginRight: `20px`, marginBottom: `10px`}}
+                    id="standard-dense"
+                    label="미인정 결과"
+                    className={clsx(classes.textField, classes.dense)}
+                    margin="dense"
+                  />
+                  <TextField
+                    style={{marginRight: `20px`, marginBottom: `10px`}}
+                    id="standard-dense"
+                    label="미인정 결과"
+                    className={clsx(classes.textField, classes.dense)}
+                    margin="dense"
+                  />
+                  <TextField
+                    style={{marginRight: `20px`}}
+                    id="standard-dense"
+                    label="미인정 결과"
+                    className={clsx(classes.textField, classes.dense)}
+                    margin="dense"
+                  />
+                  </Dropdown>
+                  </Row>
+                  </Row>
+                </WhiteBox>
+                <h2>봉사 시간</h2>
+                <WhiteBox>
+                <Row>
+                  <SubList>
+                    <span>1학년</span>
+                    <span>2학년</span>
+                    <span>3학년</span>
+                  </SubList>
+                  <Row>
+                  <Dropdown>
+                  <TextField
+                    style={{marginRight: `20px`, marginBottom: `10px`}}
+                    id="standard-dense"
+                    label="봉사 시간"
+                    className={clsx(classes.textField, classes.dense)}
+                    margin="dense"
+                  />
+                  <TextField
+                    style={{marginRight: `20px`, marginBottom: `10px`}}
+                    id="standard-dense"
+                    label="봉사 시간"
+                    className={clsx(classes.textField, classes.dense)}
+                    margin="dense"
+                  />
+                  <TextField
+                    style={{marginRight: `20px`}}
+                    id="standard-dense"
+                    label="봉사 시간"
+                    className={clsx(classes.textField, classes.dense)}
+                    margin="dense"
+                  />
+                  </Dropdown>
+                  
+                  </Row>
+                  </Row>
+                </WhiteBox>
+                <h2>성적 산출 결과</h2>
+                <WhiteBox>
+                <Row>
+                  <SubList>
+                    <span style={{marginBottom: `8px`}}>기본 점수</span>
+                    <span style={{marginBottom: `8px`}}>교과 성적</span>
+                    <span style={{marginBottom: `8px`}}>출석 성적</span>
+                    <span style={{marginBottom: `8px`}}>봉사 활동</span>
+                    <span style={{marginBottom: `8px`}}>총점</span>
+                  </SubList>
+                  <Row>
+                  <Dropdown>
+                  
+                  <TextField
+        disabled
+        id="standard-disabled"
+        label="기본 점수"
+        defaultValue={values.DefaultGrade}
+        className={classes.textField}
+        margin="normal"
+      />
+      <TextField
+        disabled
+        id="standard-disabled"
+        label="교과 점수"
+        defaultValue={values.SubjectGrade}
+        className={classes.textField}
+        margin="normal"
+      />
+      <TextField
+        disabled
+        id="standard-disabled"
+        label="출석 점수"
+        defaultValue={values.AttenGrade}
+        className={classes.textField}
+        margin="normal"
+      />
+      <TextField
+        disabled
+        id="standard-disabled"
+        label="봉사 점수"
+        defaultValue={values.VolunteerGrade}
+        className={classes.textField}
+        margin="normal"
+      />
+      <TextField
+        disabled
+        id="standard-disabled"
+        label="총 점수"
+        defaultValue={values.TotalGrade}
+        className={classes.textField}
+        margin="normal"
+      />
+                  </Dropdown>
+                  
+                  </Row>
+                  </Row>
+                
                 </WhiteBox>
             </ContentDiv>
         </Wrapper>
