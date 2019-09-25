@@ -212,7 +212,7 @@ const Form = styled.form`
 const ButtonWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 100px;
+  min-height: 60px;
   flex-direction: row;
   padding-right: 20%;
   box-sizing: border-box;

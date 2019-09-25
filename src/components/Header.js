@@ -92,11 +92,16 @@ const Modal = styled.div`
   background: rgba(0, 0, 0, 0.7);
 `;
 
+const Logo = styled.a`
+  color: ${oc.gray[9]};
+  font-family: "Do Hyeon";
+  font-size: 1.2rem;
+  text-decoration: none;
+`;
+
 const Header = () => {
   const [modal, setModal] = useState(false);
   const user = useStateValue();
-
-  const n = null;
 
   const returnModal = () => {
     if (modal) {
@@ -131,7 +136,9 @@ const Header = () => {
     <AuthContextProvider>
       <Positioner>
         <ContentDiv>
-          <h1 style={{ margin: `15px`, fontWeight: `400` }}>잎새</h1>
+          <Logo href="/">
+            <h1 style={{ margin: `15px`, fontWeight: `400` }}>잎새</h1>
+          </Logo>
           <Spacer />
           {returnLoginButton()}
         </ContentDiv>

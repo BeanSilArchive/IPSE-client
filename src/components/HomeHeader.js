@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import {Link} from 'react-router-dom';
+
 import oc from "open-color";
 
 import AuthContainer from "containers/AuthContainer";
-import Download from 'asset/2020학년도입학전형요강(최종).pdf';
+import Download from "asset/2020학년도입학전형요강(최종).pdf";
 import AuthContextProvider, { useStateValue } from "context/AuthContext";
 
 const Positioner = styled.div`
@@ -28,9 +29,11 @@ const ContentDiv = styled.div`
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
-  a, span {
+  a {
     text-decoration: none;
-    color: black;
+  }
+  span {
+    color: ${oc.gray[9]};
     margin: 0 15px;
     font-size: 1.05rem;
   }
@@ -95,6 +98,12 @@ const Modal = styled.div`
   background: rgba(0, 0, 0, 0.7);
 `;
 
+const Logo = styled.a`
+  color: ${oc.gray[9]};
+  font-family: "Do Hyeon";
+  font-size: 1.2rem;
+`;
+
 const Header = () => {
   const [modal, setModal] = useState(false);
   const user = useStateValue();
@@ -130,11 +139,22 @@ const Header = () => {
     <AuthContextProvider>
       <Positioner>
         <ContentDiv>
-          <h1 style={{ margin: `15px`, fontWeight: `400` }}>잎새</h1>
+          <Logo href="/">
+            <h1 style={{ margin: `15px`, fontWeight: `400` }}>잎새</h1>
+          </Logo>
           <Spacer />
-          <Link to="/application">원서접수</Link>
-          <a href={Download}>안내사항</a>
-          <span onClick={() => alert("아직 미구현 된 기능입니다.")} style={{cursor: `pointer`}}>Q&A</span>
+          <Link to="/application">
+            <span>원서접수</span>
+          </Link>
+          <a href={Download}>
+            <span>안내사항</span>
+          </a>
+          <span
+            onClick={() => alert("아직 미구현 된 기능입니다.")}
+            style={{ cursor: `pointer` }}
+          >
+            Q&A
+          </span>
           {returnLoginButton()}
         </ContentDiv>
       </Positioner>
