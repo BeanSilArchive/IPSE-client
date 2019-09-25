@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useState, useReducer } from "react";
 import styled from "styled-components";
 import oc from "open-color";
 
@@ -213,41 +213,118 @@ const Form = styled.form`
       }
     }
   }
+`;
 
-  #btn {
-    display: flex;
+const ButtonWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  min-height: 60px;
+  flex-direction: row;
+  padding-right: 20%;
+  box-sizing: border-box;
+
+  #Login {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border: none;
+    width: 45%;
+    height: 100%;
+    border-radius: 5px;
+    margin-right: 20px;
+    color: white;
+    letter-spacing: 0.5px;
+    background-color: ${oc.gray[9]};
+    font-size: 1.3rem;
+    cursor: pointer;
+    outline: none;
+  }
+  #Register {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border: none;
+    width: 45%;
+    height: 100%;
+    border-radius: 5px;
+    letter-spacing: 0.5px;
+    background-color: rgb(255, 255, 255);
+    font-size: 1.3rem;
+    cursor: pointer;
+    outline: none;
+  }
+
+  ${props => (props.spinner ? `display:none` : ``)};
+`;
+
+const ErrMsg = styled.p`
+  color: ${oc.red[7]};
+  margin: 1rem 0;
+  font-size: 1rem;
+`;
+
+const Spinner = styled.div`
+  ${props => (props.spinner ? `display:block` : `display:none`)};
+
+  width: 100%;
+  padding-right: 20%;
+  box-sizing: border-box;
+  .spinner {
+    margin: auto;
     width: 100%;
-    height: 50%;
-    flex-direction: row;
-    padding-right: 20%;
-    margin-top: 5%;
-    box-sizing: border-box;
+    height: 60px;
+    text-align: center;
+    font-size: 30px;
+  }
 
-    #Login {
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-      border: none;
-      width: 45%;
-      height: 50%;
-      border-radius: 5px;
-      margin-right: 20px;
-      color: white;
-      letter-spacing: 0.5px;
-      background-color: ${oc.gray[9]};
-      font-size: 1.3rem;
-      cursor: pointer;
-      outline: none;
+  .spinner > div {
+    background-color: #333;
+    height: 100%;
+    width: 10px;
+    margin-right: 2px;
+    display: inline-block;
+
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  }
+
+  .spinner .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+  }
+
+  .spinner .rect3 {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+  }
+
+  .spinner .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+  }
+
+  .spinner .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+  }
+
+  @-webkit-keyframes sk-stretchdelay {
+    0%,
+    40%,
+    100% {
+      -webkit-transform: scaleY(0.4);
     }
-    #Register {
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-      border: none;
-      width: 45%;
-      height: 50%;
-      border-radius: 5px;
-      letter-spacing: 0.5px;
-      background-color: rgb(255, 255, 255);
-      font-size: 1.3rem;
-      cursor: pointer;
-      outline: none;
+    20% {
+      -webkit-transform: scaleY(1);
+    }
+  }
+
+  @keyframes sk-stretchdelay {
+    0%,
+    40%,
+    100% {
+      transform: scaleY(0.4);
+      -webkit-transform: scaleY(0.4);
+    }
+    20% {
+      transform: scaleY(1);
+      -webkit-transform: scaleY(1);
     }
   }
 `;
@@ -271,6 +348,9 @@ const Signin = ({ setIsSignUp }) => {
 
   const { id, password } = state;
 
+  const [errMsg, setErrMsg] = useState("ㅤ");
+  const [spinner, setSpinner] = useState(false);
+
   const onChange = e => {
     dispatch(e.target);
   };
@@ -278,14 +358,31 @@ const Signin = ({ setIsSignUp }) => {
   const onSubmit = e => {
     e.preventDefault();
 
+    setErrMsg("ㅤ");
+
+    if (id === "") {
+      setErrMsg("아이디를 입력해 주세요.");
+      return;
+    } else if (password === "") {
+      setErrMsg("비밀번호를 입력해 주세요.");
+      return;
+    }
+
+    setSpinner(true);
+
     authApi
       .login({ id, password })
       .then(result => {
+        setSpinner(false);
         localStorage.setItem("ipse-token", result.data.token);
         window.location.reload();
       })
       .catch(result => {
+        if (result.response.data.error === "004") {
+          setErrMsg("비밀번호가 일치하지 않습니다.");
+        }
         console.log(result);
+        setSpinner(false);
       });
   };
 
@@ -328,7 +425,17 @@ const Signin = ({ setIsSignUp }) => {
             <div id="Save-pwd">
               <Link to="/">비밀번호를 잊어버리셨나요?</Link>
             </div>
-            <div id="btn">
+            <ErrMsg>{errMsg}</ErrMsg>
+            <Spinner spinner={spinner}>
+              <div className="spinner">
+                <div className="rect1"></div>
+                <div className="rect2"></div>
+                <div className="rect3"></div>
+                <div className="rect4"></div>
+                <div className="rect5"></div>
+              </div>
+            </Spinner>
+            <ButtonWrapper spinner={spinner}>
               <button id="Login" type="submit">
                 로그인
               </button>
@@ -340,7 +447,7 @@ const Signin = ({ setIsSignUp }) => {
               >
                 회원가입
               </button>
-            </div>
+            </ButtonWrapper>
           </Form>
         </Right>
       </Wrapper>

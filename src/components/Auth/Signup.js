@@ -363,7 +363,7 @@ const Signin = ({ setIsSignUp }) => {
   const [schoolName, setSchoolName] = useState("");
   const [schoolSeq, setSeq] = useState("");
 
-  const [errMsg, setErrMsg] = useState("");
+  const [errMsg, setErrMsg] = useState("ㅤ");
   const [spinner, setSpinner] = useState(false);
 
   const onChange = e => {
@@ -372,7 +372,7 @@ const Signin = ({ setIsSignUp }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    setErrMsg("");
+    setErrMsg("ㅤ");
 
     if (id === "") {
       setErrMsg("아이디를 입력해 주세요.");
