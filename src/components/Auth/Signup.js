@@ -6,7 +6,7 @@ import * as authApi from "api/auth";
 
 import SchoolModal from "Modal/School";
 
-import { ReactComponent as Img1 } from "asset/auth_image_1.svg";
+import { ReactComponent as Img1 } from "asset/signup_image_1.svg";
 
 import ContactsIcon from "@material-ui/icons/Contacts";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
@@ -47,15 +47,15 @@ const Left = styled.div`
 `;
 
 const SvgImage = styled(Img1)`
-  width: 37vw;
+  width: 25vw;
   height: auto;
   margin: auto 0;
   padding: 20px;
 
-  .person {
+  .tree {
     animation-name: FadeInItems;
     animation-timing-function: ease-in;
-    animation-duration: 0.6s;
+    animation-duration: 1.5s;
 
     @keyframes FadeInItems {
       0% {
@@ -69,31 +69,21 @@ const SvgImage = styled(Img1)`
     }
   }
 
-  .avatar {
-    animation-name: FadeInItems;
+  .person1 {
+    /* animation-name: FadeInItems;
     animation-timing-function: ease-in;
-    animation-duration: 0.9s;
+    animation-duration: 0.6s; */
   }
 
-  .line1 {
-    animation-name: FadeInItems;
+  .person2 {
+    /* animation-name: FadeInItems;
     animation-timing-function: ease-in;
-    animation-duration: 1s;
+    animation-duration: 0.9s; */
   }
-  .line2 {
+  .suitcase {
     animation-name: FadeInItems;
     animation-timing-function: ease-in;
     animation-duration: 1.2s;
-  }
-  .line3 {
-    animation-name: FadeInItems;
-    animation-timing-function: ease-in;
-    animation-duration: 1.4s;
-  }
-  .line4 {
-    animation-name: FadeInItems;
-    animation-timing-function: ease-in;
-    animation-duration: 1.6s;
   }
 `;
 
@@ -224,7 +214,6 @@ const Form = styled.form`
     height: 50%;
     flex-direction: row;
     padding-right: 20%;
-    margin-top: 5%;
     box-sizing: border-box;
 
     #Login {
@@ -273,6 +262,12 @@ const Spacer = styled.div`
   flex: 1;
 `;
 
+const ErrMsg = styled.p`
+  color: ${oc.red[7]};
+  margin: 1rem 0;
+  font-size: 1rem;
+`;
+
 function reducer(state, action) {
   return {
     ...state,
@@ -293,12 +288,35 @@ const Signin = ({ setIsSignUp }) => {
   const [schoolName, setSchoolName] = useState("");
   const [schoolSeq, setSeq] = useState("");
 
+  const [errMsg, setErrMsg] = useState("");
+
   const onChange = e => {
     dispatch(e.target);
   };
 
   const onSubmit = e => {
     e.preventDefault();
+    setErrMsg("");
+
+    if (id === "") {
+      setErrMsg("아이디를 입력해 주세요.");
+      return;
+    } else if (password === "") {
+      setErrMsg("비밀번호를 입력해 주세요.");
+      return;
+    } else if (name === "") {
+      setErrMsg("이름을 입력해 주세요.");
+      return;
+    } else if (schoolName === "") {
+      setErrMsg("학교를 입력해 주세요.");
+      return;
+    } else if (email === "") {
+      setErrMsg("이메일을 입력해 주세요.");
+      return;
+    } else if (password.length < 8) {
+      setErrMsg("비밀번호는 8글자 이상으로 설정해 주세요.");
+      return;
+    }
 
     authApi
       .register({ id, password, name, schoolName, schoolSeq, email })
@@ -384,6 +402,7 @@ const Signin = ({ setIsSignUp }) => {
                 onChange={onChange}
               />
             </div>
+            <ErrMsg>{errMsg}</ErrMsg>
             <div id="btn">
               <button id="Login" type="submit">
                 회원가입

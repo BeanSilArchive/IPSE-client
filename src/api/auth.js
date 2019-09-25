@@ -7,12 +7,12 @@ export const register = (
 ) => {
   console.log({ id, password, name, schoolName, schoolSeq, email });
   return axios.post(path + "/api/auth/register", {
-    id,
-    password,
-    name,
+    id: id,
+    password: password,
+    name: name,
     school_name: schoolName,
     school_seq: schoolSeq,
-    email
+    email: email
   });
 };
 
